@@ -20,9 +20,18 @@ export interface Article {
   content: string;      // 記事本文
   imageUrl?: string;    // 記事画像URL
   publishDate: string;  // 公開日
+  anomalyPlugins?: AnomalyPluginConfig[];  // 異変プラグイン設定
 }
 
-// 異変パターン定義
+// 異変プラグイン設定
+export interface AnomalyPluginConfig {
+  id: string;           // プラグインID
+  trigger: 'time' | 'scroll' | 'immediate';  // 実行タイミング
+  config: Record<string, any>;  // プラグイン固有設定
+  delay?: number;       // 遅延実行時間（ms）
+}
+
+// 異変パターン定義（従来互換）
 export interface AnomalyPattern {
   type: 'layout' | 'content' | 'image' | 'animation';
   trigger: 'scroll' | 'time' | 'immediate';

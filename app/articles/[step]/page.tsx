@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { cookies } from 'next/headers';
 import { ARTICLES } from '@/lib/constants';
 import { verifyToken } from '@/lib/jwt';
+import { AnomalyEffect } from '@/components/AnomalyEffect';
 
 interface PageProps {
   params: Promise<{ step: string }>;
@@ -44,38 +45,75 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
       </header>
       
       <main className="max-w-4xl mx-auto px-4 py-8">
-        <article className="prose prose-lg max-w-none">
-          <header className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              {article.title}
-            </h1>
-            <div className="text-gray-600 border-b pb-4">
-              <time dateTime={article.publishDate}>
-                {new Date(article.publishDate).toLocaleDateString('ja-JP', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </time>
+        {article.isAnomaly && article.anomalyPlugins ? (
+          <AnomalyEffect plugins={article.anomalyPlugins}>
+            <article className="prose prose-lg max-w-none">
+              <header className="mb-8">
+                <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                  {article.title}
+                </h1>
+                <div className="text-gray-600 border-b pb-4">
+                  <time dateTime={article.publishDate}>
+                    {new Date(article.publishDate).toLocaleDateString('ja-JP', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                </div>
+              </header>
+              
+              <div className="text-gray-800 leading-relaxed space-y-4">
+                {article.content.split('\n\n').map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+              
+              {article.imageUrl && (
+                <div className="my-8">
+                  <img 
+                    src={article.imageUrl} 
+                    alt="記事の画像"
+                    className="w-full max-w-2xl mx-auto rounded-lg shadow-md"
+                  />
+                </div>
+              )}
+            </article>
+          </AnomalyEffect>
+        ) : (
+          <article className="prose prose-lg max-w-none">
+            <header className="mb-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                {article.title}
+              </h1>
+              <div className="text-gray-600 border-b pb-4">
+                <time dateTime={article.publishDate}>
+                  {new Date(article.publishDate).toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+              </div>
+            </header>
+            
+            <div className="text-gray-800 leading-relaxed space-y-4">
+              {article.content.split('\n\n').map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
-          </header>
-          
-          <div className="text-gray-800 leading-relaxed space-y-4">
-            {article.content.split('\n\n').map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
-          
-          {article.imageUrl && (
-            <div className="my-8">
-              <img 
-                src={article.imageUrl} 
-                alt="記事の画像"
-                className="w-full max-w-2xl mx-auto rounded-lg shadow-md"
-              />
-            </div>
-          )}
-        </article>
+            
+            {article.imageUrl && (
+              <div className="my-8">
+                <img 
+                  src={article.imageUrl} 
+                  alt="記事の画像"
+                  className="w-full max-w-2xl mx-auto rounded-lg shadow-md"
+                />
+              </div>
+            )}
+          </article>
+        )}
         
         {/* ナビゲーションボタン */}
         <nav className="flex justify-between mt-12 pt-8 border-t border-gray-200">
