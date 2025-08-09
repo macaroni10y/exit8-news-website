@@ -6,61 +6,63 @@ export default function Home() {
       <header className="bg-white border-b-2 border-red-600 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           {/* トップナビゲーション */}
-          <div className="flex justify-between items-center py-2 text-sm text-gray-600">
-            <div className="flex space-x-4">
-              <span>2025年1月9日（木）</span>
-              <span>天気：晴れ 15℃</span>
+          <div className="flex justify-between items-center py-2 text-xs sm:text-sm text-gray-600">
+            <div className="flex space-x-2 sm:space-x-4">
+              <span className="hidden sm:inline">2025年1月9日（木）</span>
+              <span className="sm:hidden">1/9</span>
+              <span className="hidden sm:inline">天気：晴れ 15℃</span>
+              <span className="sm:hidden">☀15℃</span>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex space-x-3 sm:space-x-4">
               <a href="#" className="hover:text-red-600">ログイン</a>
-              <a href="#" className="hover:text-red-600">会員登録</a>
+              <a href="#" className="hover:text-red-600 hidden sm:inline">会員登録</a>
             </div>
           </div>
           
           {/* メインヘッダー */}
-          <div className="flex justify-between items-center py-4">
-            <h1 className="text-4xl font-bold text-red-600">8番ニュース</h1>
-            <div className="text-right text-sm text-gray-500">
-              <p>信頼できる地域情報をお届け</p>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 space-y-2 sm:space-y-0">
+            <h1 className="text-2xl sm:text-4xl font-bold text-red-600">8番ニュース</h1>
+            <div className="text-left sm:text-right text-sm text-gray-500">
+              <p className="hidden sm:block">信頼できる地域情報をお届け</p>
             </div>
           </div>
           
           {/* ナビゲーションメニュー */}
           <nav className="border-t border-gray-200">
-            <div className="flex space-x-8 py-3">
-              <a href="#" className="text-gray-700 hover:text-red-600 font-medium">トップ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">政治</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">経済</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">社会</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">スポーツ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">文化</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">地域</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">天気</a>
+            <div className="flex space-x-4 sm:space-x-8 py-3 overflow-x-auto scrollbar-hide">
+              <a href="#" className="text-gray-700 hover:text-red-600 font-medium whitespace-nowrap">トップ</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">政治</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">経済</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">社会</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">スポーツ</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">文化</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">地域</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">天気</a>
             </div>
           </nav>
         </div>
       </header>
       
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-6 lg:py-8">
         {/* 速報エリア */}
-        <div className="mb-8">
-          <div className="bg-red-600 text-white px-4 py-2 inline-block font-bold text-sm">速報</div>
-          <div className="bg-white border border-t-0 p-4 shadow-sm">
-            <p className="text-lg">市内で新しい地域活性化プロジェクトが発表されました</p>
+        <div className="mb-4 sm:mb-6 lg:mb-8">
+          <div className="bg-red-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 inline-block font-bold text-xs sm:text-sm">速報</div>
+          <div className="bg-white border border-t-0 p-3 sm:p-4 shadow-sm">
+            <p className="text-sm sm:text-base lg:text-lg">市内で新しい地域活性化プロジェクトが発表されました</p>
           </div>
         </div>
 
-        <div className="flex gap-8">
+        <div className="lg:flex lg:gap-8 space-y-6 lg:space-y-0">
           {/* メインコンテンツ */}
-          <div className="flex-1">
-            <div className="text-center bg-white rounded-lg shadow-sm border p-8">
-              <h2 className="text-4xl font-bold text-gray-800 mb-8">
+          <div className="lg:flex-1">
+            <div className="text-center bg-white rounded-lg shadow-sm border p-4 sm:p-6 lg:p-8">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 lg:mb-8">
                 8番出口ニュースゲーム
               </h2>
           
-              <div className="max-w-2xl mx-auto mb-12 text-left">
-                <h3 className="text-xl font-semibold mb-4">ゲームの遊び方</h3>
-                <ul className="space-y-3 text-gray-700">
+              <div className="max-w-2xl mx-auto mb-6 sm:mb-8 lg:mb-12 text-left">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">ゲームの遊び方</h3>
+                <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">1.</span>
                     <span>ニュース記事を読んで、異変があるかどうかを判定します</span>
@@ -82,16 +84,16 @@ export default function Home() {
               
               <Link 
                 href="/articles/1"
-                className="inline-block bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition-colors"
+                className="inline-block bg-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-red-700 transition-colors"
               >
                 ゲームを開始する
               </Link>
             </div>
             
             {/* ニュース一覧 */}
-            <div className="mt-8 bg-white rounded-lg shadow-sm border">
-              <div className="border-b p-4">
-                <h3 className="text-xl font-bold">最新ニュース</h3>
+            <div className="mt-4 sm:mt-6 lg:mt-8 bg-white rounded-lg shadow-sm border">
+              <div className="border-b p-3 sm:p-4">
+                <h3 className="text-lg sm:text-xl font-bold">最新ニュース</h3>
               </div>
               <div className="divide-y">
                 {[
@@ -100,16 +102,16 @@ export default function Home() {
                   { title: "市内交通システムの改善計画が発表", time: "6時間前", category: "行政" },
                   { title: "地域イベント「夏祭り2025」の準備が本格化", time: "8時間前", category: "イベント" }
                 ].map((news, i) => (
-                  <div key={i} className="p-4 hover:bg-gray-50">
+                  <div key={i} className="p-3 sm:p-4 hover:bg-gray-50">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <a href="#" className="text-lg font-medium hover:text-red-600 line-clamp-2">{news.title}</a>
-                        <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
+                        <a href="#" className="text-sm sm:text-base lg:text-lg font-medium hover:text-red-600 line-clamp-2">{news.title}</a>
+                        <div className="flex items-center space-x-2 sm:space-x-4 mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500">
                           <span>{news.time}</span>
-                          <span className="bg-gray-100 px-2 py-1 rounded text-xs">{news.category}</span>
+                          <span className="bg-gray-100 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs">{news.category}</span>
                         </div>
                       </div>
-                      <div className="ml-4 w-20 h-16 bg-gray-200 rounded flex-shrink-0"></div>
+                      <div className="ml-3 sm:ml-4 w-16 sm:w-20 h-12 sm:h-16 bg-gray-200 rounded flex-shrink-0"></div>
                     </div>
                   </div>
                 ))}
@@ -118,7 +120,7 @@ export default function Home() {
           </div>
           
           {/* サイドバー */}
-          <aside className="w-80 space-y-6">
+          <aside className="hidden lg:block lg:w-80 space-y-4 lg:space-y-6">
             {/* 人気記事 */}
             <div className="bg-white rounded-lg shadow-sm border p-4">
               <h3 className="font-bold text-lg mb-4 border-b pb-2">人気記事</h3>
@@ -161,12 +163,12 @@ export default function Home() {
           
       </main>
       
-      <footer className="bg-gray-800 text-white py-8 mt-16">
+      <footer className="bg-gray-800 text-white py-6 sm:py-8 mt-8 sm:mt-16">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div>
-              <h4 className="font-bold mb-4">ニュース</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">ニュース</h4>
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-gray-300">速報</a></li>
                 <li><a href="#" className="hover:text-gray-300">政治</a></li>
                 <li><a href="#" className="hover:text-gray-300">経済</a></li>
@@ -174,8 +176,8 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">地域情報</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">地域情報</h4>
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-gray-300">イベント</a></li>
                 <li><a href="#" className="hover:text-gray-300">お知らせ</a></li>
                 <li><a href="#" className="hover:text-gray-300">施設案内</a></li>
@@ -183,8 +185,8 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">サービス</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">サービス</h4>
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-gray-300">会員登録</a></li>
                 <li><a href="#" className="hover:text-gray-300">お問い合わせ</a></li>
                 <li><a href="#" className="hover:text-gray-300">広告掲載</a></li>
@@ -192,8 +194,8 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">8番ニュースについて</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">8番ニュースについて</h4>
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-gray-300">会社概要</a></li>
                 <li><a href="#" className="hover:text-gray-300">プライバシーポリシー</a></li>
                 <li><a href="#" className="hover:text-gray-300">利用規約</a></li>
@@ -201,9 +203,9 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-600 pt-6 text-center">
-            <p className="text-sm text-gray-400">&copy; 2025 8番ニュース. All rights reserved.</p>
-            <p className="text-xs text-gray-500 mt-2">本サイトはゲーム用の架空のニュースサイトです</p>
+          <div className="border-t border-gray-600 pt-4 sm:pt-6 text-center">
+            <p className="text-xs sm:text-sm text-gray-400">&copy; 2025 8番ニュース. All rights reserved.</p>
+            <p className="text-xs text-gray-500 mt-1 sm:mt-2">本サイトはゲーム用の架空のニュースサイトです</p>
           </div>
         </div>
       </footer>

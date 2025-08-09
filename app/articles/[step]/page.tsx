@@ -40,68 +40,70 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
       <header className="bg-white border-b-2 border-red-600 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           {/* トップナビゲーション */}
-          <div className="flex justify-between items-center py-2 text-sm text-gray-600">
-            <div className="flex space-x-4">
-              <span>2025年1月9日（木）</span>
-              <span>天気：晴れ 15℃</span>
+          <div className="flex justify-between items-center py-2 text-xs sm:text-sm text-gray-600">
+            <div className="flex space-x-2 sm:space-x-4">
+              <span className="hidden sm:inline">2025年1月9日（木）</span>
+              <span className="sm:hidden">1/9</span>
+              <span className="hidden sm:inline">天気：晴れ 15℃</span>
+              <span className="sm:hidden">☀15℃</span>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex space-x-3 sm:space-x-4">
               <a href="#" className="hover:text-red-600">ログイン</a>
-              <a href="#" className="hover:text-red-600">会員登録</a>
+              <a href="#" className="hover:text-red-600 hidden sm:inline">会員登録</a>
             </div>
           </div>
           
           {/* メインヘッダー */}
-          <div className="flex justify-between items-center py-4">
-            <h1 className="text-4xl font-bold text-red-600">8番ニュース</h1>
-            <div className="text-right text-sm text-gray-500">
-              <p>ステップ {currentStep}/8</p>
-              <p>信頼できる地域情報をお届け</p>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 space-y-2 sm:space-y-0">
+            <h1 className="text-2xl sm:text-4xl font-bold text-red-600">8番ニュース</h1>
+            <div className="text-left sm:text-right text-sm text-gray-500">
+              <p className="font-medium">ステップ {currentStep}/8</p>
+              <p className="hidden sm:block">信頼できる地域情報をお届け</p>
             </div>
           </div>
           
           {/* ナビゲーションメニュー */}
           <nav className="border-t border-gray-200">
-            <div className="flex space-x-8 py-3">
-              <a href="#" className="text-gray-700 hover:text-red-600 font-medium">トップ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">政治</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">経済</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">社会</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">スポーツ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">文化</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">地域</a>
-              <a href="#" className="text-gray-700 hover:text-red-600">天気</a>
+            <div className="flex space-x-4 sm:space-x-8 py-3 overflow-x-auto scrollbar-hide">
+              <a href="#" className="text-gray-700 hover:text-red-600 font-medium whitespace-nowrap">トップ</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">政治</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">経済</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">社会</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">スポーツ</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">文化</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">地域</a>
+              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">天気</a>
             </div>
           </nav>
         </div>
       </header>
       
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex gap-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-6 lg:py-8">
+        <div className="lg:flex lg:gap-8 space-y-6 lg:space-y-0">
           {/* メインコンテンツ */}
-          <div className="flex-1 max-w-4xl">
+          <div className="lg:flex-1 lg:max-w-4xl">
         {article.isAnomaly && article.anomalyPlugins ? (
           <AnomalyEffect plugins={article.anomalyPlugins}>
-            <article className="prose prose-lg max-w-none">
-              <header className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <article className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
+              <header className="mb-4 sm:mb-6 lg:mb-8">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
                   {article.title}
                 </h1>
                 <div className="text-gray-600 border-b pb-4">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <time dateTime={article.publishDate}>
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                      <time dateTime={article.publishDate} className="text-sm sm:text-base">
                         {new Date(article.publishDate).toLocaleDateString('ja-JP', {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'
                         })}
                       </time>
-                      <span className="ml-4 text-sm">記者：田中 太郎</span>
+                      <span className="text-sm text-gray-500">記者：田中 太郎</span>
                     </div>
                     <div className="flex space-x-2 text-sm">
-                      <span className="bg-red-100 text-red-600 px-2 py-1 rounded">地域</span>
-                      <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded">行政</span>
+                      <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-xs sm:text-sm">地域</span>
+                      <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs sm:text-sm">行政</span>
                     </div>
                   </div>
                 </div>
@@ -161,19 +163,19 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
         
         {/* 記事フッター */}
         <div className="mt-8 pt-6 border-t border-gray-300">
-          <div className="flex justify-between items-center text-sm text-gray-600 mb-6">
-            <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0 text-sm text-gray-600 mb-6">
+            <div className="flex flex-wrap gap-4">
               <button className="flex items-center space-x-1 hover:text-red-600">
-                <span>📧</span><span>記事をメールで送る</span>
+                <span>📧</span><span className="hidden sm:inline">記事をメールで送る</span>
               </button>
               <button className="flex items-center space-x-1 hover:text-red-600">
-                <span>📱</span><span>SNSでシェア</span>
+                <span>📱</span><span className="hidden sm:inline">SNSでシェア</span>
               </button>
               <button className="flex items-center space-x-1 hover:text-red-600">
-                <span>🔖</span><span>ブックマーク</span>
+                <span>🔖</span><span className="hidden sm:inline">ブックマーク</span>
               </button>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex space-x-4">
               <span>👍 12</span>
               <span>💬 3</span>
             </div>
@@ -181,12 +183,12 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
         </div>
         
         {/* ナビゲーションボタン */}
-        <nav className="flex justify-between mt-12 pt-8 border-t border-gray-200">
+        <nav className="flex flex-col sm:flex-row sm:justify-between gap-4 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200">
           <Link
             href={`/articles/${step}?clicked=prev`}
-            className="inline-flex items-center px-6 py-3 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-3 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors text-sm sm:text-base"
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             前の記事へ
@@ -194,10 +196,10 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
           
           <Link
             href={`/articles/${step}?clicked=next`}
-            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors text-sm sm:text-base"
           >
             次の記事へ
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </Link>
@@ -205,17 +207,17 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
           </div>
           
           {/* サイドバー */}
-          <aside className="w-80 space-y-6">
+          <aside className="lg:w-80 space-y-4 lg:space-y-6">
             {/* 人気記事 */}
-            <div className="bg-white rounded-lg shadow-sm border p-4">
-              <h3 className="font-bold text-lg mb-4 border-b pb-2">人気記事</h3>
-              <div className="space-y-3">
+            <div className="bg-white rounded-lg shadow-sm border p-3 lg:p-4">
+              <h3 className="font-bold text-base lg:text-lg mb-3 lg:mb-4 border-b pb-2">人気記事</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-0 lg:space-y-3">
                 {[1,2,3,4,5].map((i) => (
                   <a key={i} href="#" className="block hover:bg-gray-50 p-2 rounded">
                     <div className="flex items-start space-x-3">
-                      <span className="text-red-600 font-bold">{i}</span>
+                      <span className="text-red-600 font-bold text-sm">{i}</span>
                       <div>
-                        <h4 className="text-sm font-medium line-clamp-2">市内で新しい商業施設の建設計画が発表される</h4>
+                        <h4 className="text-xs lg:text-sm font-medium line-clamp-2">市内で新しい商業施設の建設計画が発表される</h4>
                         <p className="text-xs text-gray-500 mt-1">1時間前</p>
                       </div>
                     </div>
@@ -225,8 +227,8 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
             </div>
             
             {/* カテゴリー */}
-            <div className="bg-white rounded-lg shadow-sm border p-4">
-              <h3 className="font-bold text-lg mb-4 border-b pb-2">カテゴリー</h3>
+            <div className="bg-white rounded-lg shadow-sm border p-3 lg:p-4">
+              <h3 className="font-bold text-base lg:text-lg mb-3 lg:mb-4 border-b pb-2">カテゴリー</h3>
               <div className="space-y-2">
                 {['政治', '経済', '社会', 'スポーツ', '文化', '地域', '国際', '科学'].map((cat) => (
                   <a key={cat} href="#" className="flex justify-between items-center py-2 hover:bg-gray-50 rounded px-2">
@@ -238,7 +240,7 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
             </div>
             
             {/* 広告風 */}
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 text-center">
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-3 lg:p-4 text-center">
               <p className="text-sm text-blue-600 font-medium">地域企業からのお知らせ</p>
               <div className="mt-2 p-3 bg-white rounded border">
                 <p className="text-xs text-gray-600">株式会社地域サービス</p>
@@ -247,8 +249,8 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
             </div>
             
             {/* 天気 */}
-            <div className="bg-white rounded-lg shadow-sm border p-4">
-              <h3 className="font-bold text-lg mb-4 border-b pb-2">今日の天気</h3>
+            <div className="bg-white rounded-lg shadow-sm border p-3 lg:p-4">
+              <h3 className="font-bold text-base lg:text-lg mb-3 lg:mb-4 border-b pb-2">今日の天気</h3>
               <div className="text-center">
                 <p className="text-2xl mb-2">☀️</p>
                 <p className="font-bold text-xl">15°C</p>
@@ -260,12 +262,12 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
         </div>
       </main>
       
-      <footer className="bg-gray-800 text-white py-8 mt-16">
+      <footer className="bg-gray-800 text-white py-6 sm:py-8 mt-8 sm:mt-16">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div>
-              <h4 className="font-bold mb-4">ニュース</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">ニュース</h4>
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-gray-300">速報</a></li>
                 <li><a href="#" className="hover:text-gray-300">政治</a></li>
                 <li><a href="#" className="hover:text-gray-300">経済</a></li>
@@ -273,8 +275,8 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">地域情報</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">地域情報</h4>
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-gray-300">イベント</a></li>
                 <li><a href="#" className="hover:text-gray-300">お知らせ</a></li>
                 <li><a href="#" className="hover:text-gray-300">施設案内</a></li>
@@ -282,8 +284,8 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">サービス</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">サービス</h4>
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-gray-300">会員登録</a></li>
                 <li><a href="#" className="hover:text-gray-300">お問い合わせ</a></li>
                 <li><a href="#" className="hover:text-gray-300">広告掲載</a></li>
@@ -291,8 +293,8 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">8番ニュースについて</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">8番ニュースについて</h4>
+              <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                 <li><a href="#" className="hover:text-gray-300">会社概要</a></li>
                 <li><a href="#" className="hover:text-gray-300">プライバシーポリシー</a></li>
                 <li><a href="#" className="hover:text-gray-300">利用規約</a></li>
@@ -300,9 +302,9 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-600 pt-6 text-center">
-            <p className="text-sm text-gray-400">&copy; 2025 8番ニュース. All rights reserved.</p>
-            <p className="text-xs text-gray-500 mt-2">本サイトはゲーム用の架空のニュースサイトです</p>
+          <div className="border-t border-gray-600 pt-4 sm:pt-6 text-center">
+            <p className="text-xs sm:text-sm text-gray-400">&copy; 2025 8番ニュース. All rights reserved.</p>
+            <p className="text-xs text-gray-500 mt-1 sm:mt-2">本サイトはゲーム用の架空のニュースサイトです</p>
           </div>
         </div>
       </footer>
