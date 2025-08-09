@@ -119,6 +119,15 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
                     ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4" {...props} />,
                     li: ({node, ...props}) => <li className="text-gray-800" {...props} />,
                     strong: ({node, ...props}) => <strong className="font-semibold" {...props} />,
+                    img: ({node, ...props}) => (
+                      <img 
+                        className="w-full max-w-3xl mx-auto rounded-lg shadow-md my-6 sm:my-8 block"
+                        {...props}
+                      />
+                    ),
+                    em: ({node, ...props}) => (
+                      <span className="block text-sm text-gray-600 text-center mt-2 mb-6 italic" {...props} />
+                    ),
                   }}
                 >
                   {article.content}
@@ -162,6 +171,15 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
                   ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4" {...props} />,
                   li: ({node, ...props}) => <li className="text-gray-800" {...props} />,
                   strong: ({node, ...props}) => <strong className="font-semibold" {...props} />,
+                  img: ({node, ...props}) => (
+                    <img 
+                      className="w-full max-w-3xl mx-auto rounded-lg shadow-md my-6 sm:my-8 block"
+                      {...props}
+                    />
+                  ),
+                  em: ({node, ...props}) => (
+                    <span className="block text-sm text-gray-600 text-center mt-2 mb-6 italic" {...props} />
+                  ),
                 }}
               >
                 {article.content}
