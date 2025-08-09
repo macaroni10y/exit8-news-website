@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { ARTICLES } from '@/lib/constants';
 import { verifyToken } from '@/lib/jwt';
 import { AnomalyEffect } from '@/components/AnomalyEffect';
+import ReactMarkdown from 'react-markdown';
 
 interface PageProps {
   params: Promise<{ step: string }>;
@@ -109,10 +110,19 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
                 </div>
               </header>
               
-              <div className="text-gray-800 leading-relaxed space-y-4">
-                {article.content.split('\n\n').map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
+              <div className="text-gray-800 leading-relaxed">
+                <ReactMarkdown 
+                  components={{
+                    h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-gray-800 mb-4 mt-6" {...props} />,
+                    h3: ({node, ...props}) => <h3 className="text-xl font-semibold text-gray-800 mb-3 mt-5" {...props} />,
+                    p: ({node, ...props}) => <p className="text-gray-800 leading-relaxed mb-4" {...props} />,
+                    ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4" {...props} />,
+                    li: ({node, ...props}) => <li className="text-gray-800" {...props} />,
+                    strong: ({node, ...props}) => <strong className="font-semibold" {...props} />,
+                  }}
+                >
+                  {article.content}
+                </ReactMarkdown>
               </div>
               
               {article.imageUrl && (
@@ -143,10 +153,19 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
               </div>
             </header>
             
-            <div className="text-gray-800 leading-relaxed space-y-4">
-              {article.content.split('\n\n').map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
+            <div className="text-gray-800 leading-relaxed">
+              <ReactMarkdown 
+                components={{
+                  h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-gray-800 mb-4 mt-6" {...props} />,
+                  h3: ({node, ...props}) => <h3 className="text-xl font-semibold text-gray-800 mb-3 mt-5" {...props} />,
+                  p: ({node, ...props}) => <p className="text-gray-800 leading-relaxed mb-4" {...props} />,
+                  ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4" {...props} />,
+                  li: ({node, ...props}) => <li className="text-gray-800" {...props} />,
+                  strong: ({node, ...props}) => <strong className="font-semibold" {...props} />,
+                }}
+              >
+                {article.content}
+              </ReactMarkdown>
             </div>
             
             {article.imageUrl && (
