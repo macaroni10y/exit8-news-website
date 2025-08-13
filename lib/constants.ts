@@ -145,7 +145,7 @@ export const ARTICLES: Article[] = [
     isAnomaly: true, 
     title: articleTitle,
     content: articleContent,
-    publishDate: "2025-01-10",
+    publishDate: "2025-01-15",
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
@@ -164,7 +164,7 @@ export const ARTICLES: Article[] = [
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
-    publishDate: "2025-01-12",
+    publishDate: "2025-01-15",
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
@@ -183,7 +183,7 @@ export const ARTICLES: Article[] = [
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
-    publishDate: "2025-01-14",
+    publishDate: "2025-01-15",
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
@@ -202,7 +202,7 @@ export const ARTICLES: Article[] = [
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
-    publishDate: "2025-01-13",
+    publishDate: "2025-01-15",
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {

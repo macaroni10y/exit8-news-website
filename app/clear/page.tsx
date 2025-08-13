@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function ClearPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b-2 border-red-600 shadow-sm">
+      <header className="bg-white border-b-2 border-yellow-600 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           {/* トップナビゲーション */}
           <div className="flex justify-between items-center py-2 text-xs sm:text-sm text-gray-600">
@@ -14,14 +14,17 @@ export default function ClearPage() {
               <span className="sm:hidden">☀15℃</span>
             </div>
             <div className="flex space-x-3 sm:space-x-4">
-              <a href="#" className="hover:text-red-600">ログイン</a>
-              <a href="#" className="hover:text-red-600 hidden sm:inline">会員登録</a>
+              <a href="#" className="hover:text-yellow-600">ログイン</a>
+              <a href="#" className="hover:text-yellow-600 hidden sm:inline">会員登録</a>
             </div>
           </div>
           
           {/* メインヘッダー */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 space-y-2 sm:space-y-0">
-            <h1 className="text-2xl sm:text-4xl font-bold text-red-600">8番ニュース</h1>
+            <h1 className="text-2xl sm:text-4xl font-bold">
+              <span className="text-white bg-yellow-500 px-2 py-1">8番</span>
+              <span className="text-black ml-2">ニュース</span>
+            </h1>
             <div className="text-left sm:text-right text-sm text-gray-500">
               <p className="font-medium text-green-600">ゲームクリア！</p>
               <p className="hidden sm:block">信頼できる地域情報をお届け</p>
@@ -31,14 +34,14 @@ export default function ClearPage() {
           {/* ナビゲーションメニュー */}
           <nav className="border-t border-gray-200">
             <div className="flex space-x-4 sm:space-x-8 py-3 overflow-x-auto scrollbar-hide">
-              <a href="#" className="text-gray-700 hover:text-red-600 font-medium whitespace-nowrap">トップ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">政治</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">経済</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">社会</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">スポーツ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">文化</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">地域</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">天気</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 font-medium whitespace-nowrap">トップ</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">政治</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">経済</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">社会</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">スポーツ</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">文化</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">地域</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">天気</a>
             </div>
           </nav>
         </div>

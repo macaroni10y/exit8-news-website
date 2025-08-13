@@ -42,7 +42,7 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
     <div className="min-h-screen bg-gray-50">
       <NavigationGuard />
       <DummyLinkPreventer />
-      <header className="bg-white border-b-2 border-red-600 shadow-sm">
+      <header className="bg-white border-b-2 border-yellow-600 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           {/* トップナビゲーション */}
           <div className="flex justify-between items-center py-2 text-xs sm:text-sm text-gray-600">
@@ -53,14 +53,17 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
               <span className="sm:hidden">☀15℃</span>
             </div>
             <div className="flex space-x-3 sm:space-x-4">
-              <a href="#" className="hover:text-red-600">ログイン</a>
-              <a href="#" className="hover:text-red-600 hidden sm:inline">会員登録</a>
+              <a href="#" className="hover:text-yellow-600">ログイン</a>
+              <a href="#" className="hover:text-yellow-600 hidden sm:inline">会員登録</a>
             </div>
           </div>
           
           {/* メインヘッダー */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 space-y-2 sm:space-y-0">
-            <h1 className="text-2xl sm:text-4xl font-bold text-red-600">8番ニュース</h1>
+            <h1 className="text-2xl sm:text-4xl font-bold">
+              <span className="text-white bg-yellow-500 px-2 py-1">8番</span>
+              <span className="text-black ml-2">ニュース</span>
+            </h1>
             <div className="text-left sm:text-right text-sm text-gray-500">
               <p className="font-medium">ステップ {currentStep}/8</p>
               <p className="hidden sm:block">信頼できる地域情報をお届け</p>
@@ -70,14 +73,14 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
           {/* ナビゲーションメニュー */}
           <nav className="border-t border-gray-200">
             <div className="flex space-x-4 sm:space-x-8 py-3 overflow-x-auto scrollbar-hide">
-              <a href="#" className="text-gray-700 hover:text-red-600 font-medium whitespace-nowrap">トップ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">政治</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">経済</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">社会</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">スポーツ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">文化</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">地域</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">天気</a>
+              <Link href="/" className="text-gray-700 hover:text-yellow-600 font-medium whitespace-nowrap">トップ</Link>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">政治</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">経済</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">社会</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">スポーツ</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">文化</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">地域</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">天気</a>
             </div>
           </nav>
         </div>
@@ -107,7 +110,7 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
                       <span className="text-sm text-gray-500">記者：田中 太郎</span>
                     </div>
                     <div className="flex space-x-2 text-sm">
-                      <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-xs sm:text-sm">地域</span>
+                      <span className="bg-yellow-100 text-yellow-600 px-2 py-1 rounded text-xs sm:text-sm">地域</span>
                       <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs sm:text-sm">行政</span>
                     </div>
                   </div>
@@ -117,8 +120,8 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
               <div className="text-gray-800 leading-relaxed">
                 <ReactMarkdown 
                   components={{
-                    h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-gray-800 mb-4 mt-6" {...props} />,
-                    h3: ({node, ...props}) => <h3 className="text-xl font-semibold text-gray-800 mb-3 mt-5" {...props} />,
+                    h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-black underline decoration-yellow-500 decoration-2 mb-4 mt-6" {...props} />,
+                    h3: ({node, ...props}) => <h3 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-3 mt-5" {...props} />,
                     p: ({node, ...props}) => <p className="text-gray-800 leading-relaxed mb-4" {...props} />,
                     ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4" {...props} />,
                     li: ({node, ...props}) => <li className="text-gray-800" {...props} />,
@@ -169,8 +172,8 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
             <div className="text-gray-800 leading-relaxed">
               <ReactMarkdown 
                 components={{
-                  h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-gray-800 mb-4 mt-6" {...props} />,
-                  h3: ({node, ...props}) => <h3 className="text-xl font-semibold text-gray-800 mb-3 mt-5" {...props} />,
+                  h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-black underline decoration-yellow-500 decoration-2 mb-4 mt-6" {...props} />,
+                  h3: ({node, ...props}) => <h3 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-3 mt-5" {...props} />,
                   p: ({node, ...props}) => <p className="text-gray-800 leading-relaxed mb-4" {...props} />,
                   ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4" {...props} />,
                   li: ({node, ...props}) => <li className="text-gray-800" {...props} />,
@@ -206,13 +209,13 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
         <div className="mt-8 pt-6 border-t border-gray-300">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0 text-sm text-gray-600 mb-6">
             <div className="flex flex-wrap gap-4">
-              <button className="flex items-center space-x-1 hover:text-red-600">
+              <button className="flex items-center space-x-1 hover:text-yellow-600">
                 <span>📧</span><span className="hidden sm:inline">記事をメールで送る</span>
               </button>
-              <button className="flex items-center space-x-1 hover:text-red-600">
+              <button className="flex items-center space-x-1 hover:text-yellow-600">
                 <span>📱</span><span className="hidden sm:inline">SNSでシェア</span>
               </button>
-              <button className="flex items-center space-x-1 hover:text-red-600">
+              <button className="flex items-center space-x-1 hover:text-yellow-600">
                 <span>🔖</span><span className="hidden sm:inline">ブックマーク</span>
               </button>
             </div>
@@ -237,7 +240,7 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
           
           <Link
             href={`/articles/${step}?clicked=next`}
-            className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors text-sm sm:text-base"
+            className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors text-sm sm:text-base"
           >
             次の記事へ
             <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -256,7 +259,7 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
                 {[1,2,3,4,5].map((i) => (
                   <a key={i} href="#" className="block hover:bg-gray-50 p-2 rounded">
                     <div className="flex items-start space-x-3">
-                      <span className="text-red-600 font-bold text-sm">{i}</span>
+                      <span className="text-yellow-600 font-bold text-sm">{i}</span>
                       <div>
                         <h4 className="text-xs lg:text-sm font-medium line-clamp-2">市内で新しい商業施設の建設計画が発表される</h4>
                         <p className="text-xs text-gray-500 mt-1">1時間前</p>
@@ -284,7 +287,7 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
             <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-3 lg:p-4 text-center">
               <p className="text-sm text-blue-600 font-medium">地域企業からのお知らせ</p>
               <div className="mt-2 p-3 bg-white rounded border">
-                <p className="text-xs text-gray-600">株式会社地域サービス</p>
+                <p className="text-xs text-gray-600">株式会社8番システムズ</p>
                 <p className="text-sm font-medium mt-1">新サービス開始のお知らせ</p>
               </div>
             </div>

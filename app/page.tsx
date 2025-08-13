@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b-2 border-red-600 shadow-sm">
+      <header className="bg-white border-b-2 border-yellow-600 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           {/* トップナビゲーション */}
           <div className="flex justify-between items-center py-2 text-xs sm:text-sm text-gray-600">
@@ -14,14 +14,17 @@ export default function Home() {
               <span className="sm:hidden">☀15℃</span>
             </div>
             <div className="flex space-x-3 sm:space-x-4">
-              <a href="#" className="hover:text-red-600">ログイン</a>
-              <a href="#" className="hover:text-red-600 hidden sm:inline">会員登録</a>
+              <a href="#" className="hover:text-yellow-600">ログイン</a>
+              <a href="#" className="hover:text-yellow-600 hidden sm:inline">会員登録</a>
             </div>
           </div>
           
           {/* メインヘッダー */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 space-y-2 sm:space-y-0">
-            <h1 className="text-2xl sm:text-4xl font-bold text-red-600">8番ニュース</h1>
+            <h1 className="text-2xl sm:text-4xl font-bold">
+              <span className="text-white bg-yellow-500 px-2 py-1">8番</span>
+              <span className="text-black ml-2">ニュース</span>
+            </h1>
             <div className="text-left sm:text-right text-sm text-gray-500">
               <p className="hidden sm:block">信頼できる地域情報をお届け</p>
             </div>
@@ -30,14 +33,14 @@ export default function Home() {
           {/* ナビゲーションメニュー */}
           <nav className="border-t border-gray-200">
             <div className="flex space-x-4 sm:space-x-8 py-3 overflow-x-auto scrollbar-hide">
-              <a href="#" className="text-gray-700 hover:text-red-600 font-medium whitespace-nowrap">トップ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">政治</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">経済</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">社会</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">スポーツ</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">文化</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">地域</a>
-              <a href="#" className="text-gray-700 hover:text-red-600 whitespace-nowrap">天気</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 font-medium whitespace-nowrap">トップ</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">政治</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">経済</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">社会</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">スポーツ</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">文化</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">地域</a>
+              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">天気</a>
             </div>
           </nav>
         </div>
@@ -46,7 +49,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-6 lg:py-8">
         {/* 速報エリア */}
         <div className="mb-4 sm:mb-6 lg:mb-8">
-          <div className="bg-red-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 inline-block font-bold text-xs sm:text-sm">速報</div>
+          <div className="bg-yellow-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 inline-block font-bold text-xs sm:text-sm">速報</div>
           <div className="bg-white border border-t-0 p-3 sm:p-4 shadow-sm">
             <p className="text-sm sm:text-base lg:text-lg">市内で新しい地域活性化プロジェクトが発表されました</p>
           </div>
@@ -57,7 +60,7 @@ export default function Home() {
           <div className="lg:flex-1">
             <div className="text-center bg-white rounded-lg shadow-sm border p-4 sm:p-6 lg:p-8">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 lg:mb-8">
-                8番出口ニュースゲーム
+                8番ニュース
               </h2>
           
               <div className="max-w-2xl mx-auto mb-6 sm:mb-8 lg:mb-12 text-left">
@@ -65,26 +68,32 @@ export default function Home() {
                 <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">1.</span>
-                    <span>ニュース記事を読んで、異変があるかどうかを判定します</span>
+                    <span>ニュース記事を読んで、異変を見逃さないこと</span>
                   </li>
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">2.</span>
-                    <span>異変があれば「←前の記事へ」、無ければ「次の記事へ→」を選択</span>
+                    <span>異変があれば「←前の記事へ」、無ければ「次の記事へ→」を選択すること</span>
                   </li>
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">3.</span>
-                    <span>8回連続で正解するとクリア！不正解の場合は最初からやり直し</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="font-semibold mr-2">4.</span>
-                    <span>記事の文章が変わったり、レイアウトが崩れたりする異変に注意</span>
+                    <span>8回連続で正解するとクリア。不正解の場合は最初からやり直し</span>
                   </li>
                 </ul>
               </div>
               
+              <div className="mb-4 sm:mb-6 text-center">
+                <p className="text-xs sm:text-sm text-gray-500">
+                  ※ ゲームをプレイする前に
+                  <Link href="/disclaimer" className="text-yellow-600 hover:text-yellow-700 underline ml-1">
+                    注意事項
+                  </Link>
+                  をご確認ください
+                </p>
+              </div>
+              
               <Link 
                 href="/articles/1"
-                className="inline-block bg-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-red-700 transition-colors"
+                className="inline-block bg-yellow-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-yellow-600 transition-colors"
               >
                 ゲームを開始する
               </Link>
@@ -105,7 +114,7 @@ export default function Home() {
                   <div key={i} className="p-3 sm:p-4 hover:bg-gray-50">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <a href="#" className="text-sm sm:text-base lg:text-lg font-medium hover:text-red-600 line-clamp-2">{news.title}</a>
+                        <a href="#" className="text-sm sm:text-base lg:text-lg font-medium hover:text-yellow-600 line-clamp-2">{news.title}</a>
                         <div className="flex items-center space-x-2 sm:space-x-4 mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500">
                           <span>{news.time}</span>
                           <span className="bg-gray-100 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs">{news.category}</span>
@@ -128,7 +137,7 @@ export default function Home() {
                 {[1,2,3,4,5].map((i) => (
                   <a key={i} href="#" className="block hover:bg-gray-50 p-2 rounded">
                     <div className="flex items-start space-x-3">
-                      <span className="text-red-600 font-bold">{i}</span>
+                      <span className="text-yellow-600 font-bold">{i}</span>
                       <div>
                         <h4 className="text-sm font-medium line-clamp-2">市内で新しい商業施設の建設計画が発表される</h4>
                         <p className="text-xs text-gray-500 mt-1">1時間前</p>
@@ -154,7 +163,7 @@ export default function Home() {
             <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 text-center">
               <p className="text-sm text-blue-600 font-medium">地域企業からのお知らせ</p>
               <div className="mt-2 p-3 bg-white rounded border">
-                <p className="text-xs text-gray-600">株式会社地域サービス</p>
+                <p className="text-xs text-gray-600">株式会社8番システムズ</p>
                 <p className="text-sm font-medium mt-1">新サービス開始のお知らせ</p>
               </div>
             </div>
