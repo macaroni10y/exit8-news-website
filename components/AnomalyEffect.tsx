@@ -5,6 +5,7 @@ import { AnomalyPluginConfig } from '@/lib/types';
 import { anomalyEngine } from '@/lib/anomaly-plugins/AnomalyEngine';
 import { LayoutCollapsePlugin } from '@/lib/anomaly-plugins/LayoutCollapsePlugin';
 import { ImageSwapPlugin } from '@/lib/anomaly-plugins/ImageSwapPlugin';
+import { TextCorruptionPlugin } from '@/lib/anomaly-plugins/TextCorruptionPlugin';
 
 interface AnomalyEffectProps {
   plugins: AnomalyPluginConfig[];
@@ -25,6 +26,9 @@ export function AnomalyEffect({ plugins, children }: AnomalyEffectProps) {
     }
     if (!anomalyEngine.hasPlugin('image-swap')) {
       anomalyEngine.registerPlugin(ImageSwapPlugin);
+    }
+    if (!anomalyEngine.hasPlugin('text-corruption')) {
+      anomalyEngine.registerPlugin(TextCorruptionPlugin);
     }
 
     // 異変を実行
