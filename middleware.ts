@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createInitialToken, verifyToken, updateToken, updateTokenWithArticle } from '@/lib/jwt';
+import { createInitialToken, verifyToken, updateToken, updateTokenWithArticle, isValidTransition } from '@/lib/jwt';
 import { getRandomArticle, ARTICLES } from '@/lib/constants';
 
 export async function middleware(request: NextRequest) {
@@ -23,10 +23,32 @@ export async function middleware(request: NextRequest) {
   
   // 現在のトークンを取得
   const currentToken = request.cookies.get('play')?.value;
+  const clickedDirection = searchParams.get('clicked');
+  
+  // トークンの検証
+  const payload = currentToken ? await verifyToken(currentToken) : null;
+  
+  // 遷移の妥当性をチェック
+  const validation = isValidTransition(payload, step, !!clickedDirection);
+  
+  // 不正な遷移を検出した場合はステップ1にリセット
+  if (!validation.isValid && step !== 1) {
+    console.log(`Invalid transition detected: ${validation.reason}`);
+    const resetArticle = getRandomArticle();
+    const newToken = await createInitialToken(resetArticle.id);
+    const response = NextResponse.redirect(new URL('/articles/1', request.url));
+    response.cookies.set('play', newToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 2
+    });
+    return response;
+  }
   
   // Step 1 の場合：初期トークン生成またはリセット
   if (step === 1) {
-    if (!currentToken || !searchParams.get('clicked')) {
+    if (!currentToken || !clickedDirection) {
       // 初回アクセスまたはリセット時：新しいトークンを生成
       const initialArticle = getRandomArticle();
       const newToken = await createInitialToken(initialArticle.id);
@@ -41,12 +63,18 @@ export async function middleware(request: NextRequest) {
     }
   }
   
-  // トークンの検証
-  const payload = currentToken ? await verifyToken(currentToken) : null;
-  
   // Step 2以上の場合：有効なトークンが必要
   if (step > 1 && !payload) {
-    return NextResponse.redirect(new URL('/', request.url));
+    const resetArticle = getRandomArticle();
+    const newToken = await createInitialToken(resetArticle.id);
+    const response = NextResponse.redirect(new URL('/articles/1', request.url));
+    response.cookies.set('play', newToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 2
+    });
+    return response;
   }
   
   // 通常のページアクセス（ボタンクリックなし）で、記事IDが設定されていない場合
@@ -64,7 +92,6 @@ export async function middleware(request: NextRequest) {
   }
   
   // ユーザーがボタンをクリックした場合の処理
-  const clickedDirection = searchParams.get('clicked');
   if (clickedDirection && payload) {
     // JWTから現在の記事IDを取得
     const currentArticle = ARTICLES.find(article => article.id === payload.currentArticleId);

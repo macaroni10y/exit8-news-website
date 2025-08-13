@@ -3,6 +3,8 @@ import { cookies } from 'next/headers';
 import { ARTICLES } from '@/lib/constants';
 import { verifyToken } from '@/lib/jwt';
 import { AnomalyEffect } from '@/components/AnomalyEffect';
+import { NavigationGuard } from '@/components/NavigationGuard';
+import { DummyLinkPreventer } from '@/components/DummyLinkPreventer';
 import ReactMarkdown from 'react-markdown';
 
 interface PageProps {
@@ -38,6 +40,8 @@ export default async function ArticlePage({ params, searchParams }: PageProps) {
   
   return (
     <div className="min-h-screen bg-gray-50">
+      <NavigationGuard />
+      <DummyLinkPreventer />
       <header className="bg-white border-b-2 border-red-600 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           {/* トップナビゲーション */}
