@@ -59,10 +59,10 @@ export default function Disclaimer() {
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
                   「8番ニュース」は、人気ゲーム「8番出口」をオマージュしたブラウザゲームです。
-                  <strong>実在するニュースサイトではなく、ゲーム専用に制作された架空のウェブサイトです。</strong>
+                  実在するニュースサイトではなく、ゲーム専用に制作された架空のウェブサイトです。
                 </p>
                 <p>
-                  掲載されている記事、画像、人名、団体名などの情報は全て<strong>フィクション</strong>であり、
+                  掲載されている記事、画像、人名、団体名などの情報は全てフィクションであり、
                   実在の人物・団体・事件とは一切関係ありません。
                 </p>
               </div>
@@ -73,12 +73,12 @@ export default function Disclaimer() {
               <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">技術的な制約と仕様について</h2>
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
-                  ゲーム性を実現するため、以下の点で一般的なウェブサイトとは異なる動作をします：
+                  ゲームの都合上、一般的なウェブサイトとは異なりアクセシビリティ等の各種標準やプラクティスから逸脱した動作をします。
                 </p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
                   <li>記事ページへの直接アクセスが制限されています</li>
                   <li>ブラウザの戻るボタンやページ更新が適切に動作しない場合があります</li>
-                  <li>一部のリンクはゲーム進行のために無効化されています</li>
+                  <li>一部のゲーム進行に無関係なリンクは無効化されています</li>
                   <li>記事の表示中に意図的な「異変」が発生する場合があります</li>
                   <li>JavaScriptが無効な環境では正常に動作しません</li>
                 </ul>
@@ -90,7 +90,7 @@ export default function Disclaimer() {
               <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">データの取り扱いについて</h2>
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
-                  このサイトでは、ゲーム進行状態の保存のためにCookieを使用しています。
+                  このサイトでは、ゲーム進行状態の保存のために必要な最低限のCookieを使用しています。
                   個人を特定できる情報は一切収集していません。
                 </p>
                 <p>
@@ -110,6 +110,10 @@ export default function Disclaimer() {
                 <p>
                   予告なくサービスの変更・停止を行う場合があります。
                 </p>
+                <p>
+                  本サイトの一部画像・文章は生成AI（OpenAI等）により生成されています。
+                  これらは演出目的であり、現実の写真・事実を示すものではありません。
+                </p>
               </div>
             </section>
 
@@ -118,8 +122,8 @@ export default function Disclaimer() {
               <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">著作権について</h2>
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
-                  このサイトのコンテンツは、オリジナルゲーム「8番出口」にインスパイアされて制作されています。
-                  オリジナル作品の著作権は原作者に帰属します。
+                  このサイトのコンテンツは、オリジナルゲーム「8番出口」にインスパイアされて制作されています。「8番出口」の権利者とは一切関係ありません。記載の名称・ロゴは各権利者に帰属します。
+                  本サイトでの言及は説明目的であり、権利帰属や提携を示すものではありません。
                 </p>
               </div>
             </section>

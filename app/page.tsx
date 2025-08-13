@@ -134,13 +134,19 @@ export default function Home() {
             <div className="bg-white rounded-lg shadow-sm border p-4">
               <h3 className="font-bold text-lg mb-4 border-b pb-2">人気記事</h3>
               <div className="space-y-3">
-                {[1,2,3,4,5].map((i) => (
+                {[
+                  { title: "市内で新しい商業施設の建設計画が発表される", time: "1時間前" },
+                  { title: "地域住民参加の清掃活動が大盛況", time: "2時間前" },
+                  { title: "市役所が新サービスの導入を検討", time: "4時間前" },
+                  { title: "地域企業の技術革新が注目を集める", time: "6時間前" },
+                  { title: "季節のイベント準備が本格化", time: "8時間前" }
+                ].map((article, i) => (
                   <a key={i} href="#" className="block hover:bg-gray-50 p-2 rounded">
                     <div className="flex items-start space-x-3">
-                      <span className="text-yellow-600 font-bold">{i}</span>
+                      <span className="text-yellow-600 font-bold">{i + 1}</span>
                       <div>
-                        <h4 className="text-sm font-medium line-clamp-2">市内で新しい商業施設の建設計画が発表される</h4>
-                        <p className="text-xs text-gray-500 mt-1">1時間前</p>
+                        <h4 className="text-sm font-medium line-clamp-2">{article.title}</h4>
+                        <p className="text-xs text-gray-500 mt-1">{article.time}</p>
                       </div>
                     </div>
                   </a>
