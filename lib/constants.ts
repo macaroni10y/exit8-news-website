@@ -113,7 +113,7 @@ export const ARTICLES: Article[] = [
   },
   {
     id: "article-3",
-    isAnomaly: false, 
+    isAnomaly: true, 
     title: "新しい図書館が来春オープン予定",
     content: `市内中心部に建設中の新図書館が、来年4月のオープンに向けて着々と工事が進んでいます。この新施設は、単なる図書館としての機能を超えて、地域の文化・教育・交流の拠点として大きな期待を集めています。
 
@@ -225,7 +225,18 @@ AI技術を活用した自動レファレンスシステムを導入し、簡単
 
 市教育長は「新図書館は、市民の知的好奇心を育み、生涯学習を支援する重要な施設となる。多くの方に愛される図書館を目指したい」と意気込みを語っています。`,
     publishDate: "2025-01-10",
-    imageUrl: "/images/dummy.png"
+    imageUrl: "/images/dummy.png",
+    anomalyPlugins: [
+      {
+        id: 'reverse-scroll',
+        trigger: 'time',
+        delay: 2500,
+        config: {
+          intensity: 'full',
+          visualFeedback: false
+        }
+      }
+    ]
   },
   {
     id: "article-4",

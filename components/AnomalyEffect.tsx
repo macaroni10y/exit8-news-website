@@ -6,6 +6,7 @@ import { anomalyEngine } from '@/lib/anomaly-plugins/AnomalyEngine';
 import { LayoutCollapsePlugin } from '@/lib/anomaly-plugins/LayoutCollapsePlugin';
 import { ImageSwapPlugin } from '@/lib/anomaly-plugins/ImageSwapPlugin';
 import { TextCorruptionPlugin } from '@/lib/anomaly-plugins/TextCorruptionPlugin';
+import { ReverseScrollPlugin } from '@/lib/anomaly-plugins/ReverseScrollPlugin';
 
 interface AnomalyEffectProps {
   plugins: AnomalyPluginConfig[];
@@ -29,6 +30,9 @@ export function AnomalyEffect({ plugins, children }: AnomalyEffectProps) {
     }
     if (!anomalyEngine.hasPlugin('text-corruption')) {
       anomalyEngine.registerPlugin(TextCorruptionPlugin);
+    }
+    if (!anomalyEngine.hasPlugin('reverse-scroll')) {
+      anomalyEngine.registerPlugin(ReverseScrollPlugin);
     }
 
     // 異変を実行
