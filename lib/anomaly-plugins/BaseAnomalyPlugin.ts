@@ -1,7 +1,7 @@
-import { AnomalyPluginConfig } from '../types';
+import type { AnomalyPluginConfig } from "../types";
 
 /**
- * 異変プラグインの基底抽象クラス
+ * Base abstract class for anomaly plugins
  */
 export abstract class BaseAnomalyPlugin {
   protected config: AnomalyPluginConfig;
@@ -15,29 +15,29 @@ export abstract class BaseAnomalyPlugin {
   }
 
   /**
-   * プラグインの一意ID
+   * Unique plugin ID
    */
   abstract get id(): string;
 
   /**
-   * プラグインの説明
+   * Plugin description
    */
   abstract get description(): string;
 
   /**
-   * 異変を実行する
-   * @param element 対象となるHTML要素
+   * Execute anomaly
+   * @param element Target HTML element
    */
   abstract execute(element: HTMLElement): Promise<void> | void;
 
   /**
-   * 異変をクリーンアップする
+   * Clean up anomaly
    */
   abstract cleanup(): void;
 
   /**
-   * プラグインを初期化する
-   * @param element 対象となるHTML要素
+   * Initialize plugin
+   * @param element Target HTML element
    */
   async initialize(element: HTMLElement): Promise<void> {
     if (this.isActive) {
@@ -47,12 +47,12 @@ export abstract class BaseAnomalyPlugin {
     this.element = element;
     this.isActive = true;
 
-    // トリガーに応じて実行タイミングを制御
+    // Control execution timing based on trigger
     switch (this.config.trigger) {
-      case 'immediate':
+      case "immediate":
         await this.execute(element);
         break;
-      case 'time':
+      case "time": {
         const delay = this.config.delay || 3000;
         this.timeoutId = window.setTimeout(async () => {
           if (this.isActive) {
@@ -60,74 +60,78 @@ export abstract class BaseAnomalyPlugin {
           }
         }, delay);
         break;
-      case 'scroll':
+      }
+      case "scroll":
         this.setupScrollTrigger(element);
         break;
     }
   }
 
   /**
-   * スクロールトリガーを設定する
-   * @param element 対象要素
+   * Set up scroll trigger
+   * @param element Target element
    */
   protected setupScrollTrigger(element: HTMLElement): void {
     const handleScroll = () => {
       const rect = element.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const breakPoint = this.config.config?.breakPoint || 0.5;
-      
-      // 要素が指定の位置に来たら実行
+
+      // Execute when element reaches specified position
       if (rect.top <= viewportHeight * breakPoint && this.isActive) {
         this.execute(element);
-        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener("scroll", handleScroll);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
   }
 
   /**
-   * プラグインを破棄する
+   * Destroy plugin
    */
   destroy(): void {
     this.cleanup();
-    
+
     if (this.timeoutId !== null) {
       clearTimeout(this.timeoutId);
       this.timeoutId = null;
     }
-    
+
     if (this.intervalId !== null) {
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
-    
+
     this.isActive = false;
     this.element = null;
   }
 
   /**
-   * CSS変更を適用するヘルパーメソッド
-   * @param element 対象要素
-   * @param styles CSSスタイル
+   * Helper method to apply CSS changes
+   * @param element Target element
+   * @param styles CSS styles
    */
-  protected applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>): void {
+  protected applyStyles(
+    element: HTMLElement,
+    styles: Partial<CSSStyleDeclaration>,
+  ): void {
     Object.assign(element.style, styles);
   }
 
   /**
-   * CSS クラスを追加するヘルパーメソッド
-   * @param element 対象要素
-   * @param className クラス名
+   * Helper method to add CSS class
+   * @param element Target element
+   * @param className Class name
    */
   protected addClass(element: HTMLElement, className: string): void {
     element.classList.add(className);
   }
 
   /**
-   * CSS クラスを削除するヘルパーメソッド
-   * @param element 対象要素
-   * @param className クラス名
+   * Helper method to remove CSS class
+   * @param element Target element
+   * @param className Class name
    */
   protected removeClass(element: HTMLElement, className: string): void {
     element.classList.remove(className);

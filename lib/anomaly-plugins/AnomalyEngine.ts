@@ -1,59 +1,59 @@
-import { BaseAnomalyPlugin } from './BaseAnomalyPlugin';
-import { AnomalyPluginConfig } from '../types';
+import type { AnomalyPluginConfig } from "../types";
+import type { BaseAnomalyPlugin } from "./BaseAnomalyPlugin";
 
 /**
- * 異変プラグインの管理・実行エンジン
+ * Anomaly plugin management and execution engine
  */
 export class AnomalyEngine {
   private plugins: Map<string, typeof BaseAnomalyPlugin> = new Map();
   private activeInstances: BaseAnomalyPlugin[] = [];
 
   /**
-   * プラグインを登録する
-   * @param PluginClass プラグインクラス
+   * Register a plugin
+   * @param PluginClass Plugin class
    */
   registerPlugin(PluginClass: typeof BaseAnomalyPlugin): void {
-    // プラグインインスタンスを作成して ID を取得
+    // Create plugin instance to get ID
     const tempInstance = new (PluginClass as any)({
-      id: '',
-      trigger: 'immediate' as const,
-      config: {}
+      id: "",
+      trigger: "immediate" as const,
+      config: {},
     });
-    
+
     this.plugins.set(tempInstance.id, PluginClass);
   }
 
   /**
-   * 登録されているプラグイン一覧を取得
+   * Get list of registered plugins
    */
   getAvailablePlugins(): string[] {
     return Array.from(this.plugins.keys());
   }
 
   /**
-   * プラグインが登録されているかチェック
-   * @param pluginId プラグインID
+   * Check if plugin is registered
+   * @param pluginId Plugin ID
    */
   hasPlugin(pluginId: string): boolean {
     return this.plugins.has(pluginId);
   }
 
   /**
-   * 異変を実行する
-   * @param configs プラグイン設定配列
-   * @param targetElement 対象要素
+   * Execute anomalies
+   * @param configs Plugin configuration array
+   * @param targetElement Target element
    */
   async executeAnomalies(
     configs: AnomalyPluginConfig[],
-    targetElement: HTMLElement
+    targetElement: HTMLElement,
   ): Promise<void> {
-    // 既存のアクティブなインスタンスをクリーンアップ
+    // Clean up existing active instances
     this.cleanup();
 
-    // 各プラグインを実行
+    // Execute each plugin
     for (const config of configs) {
       const PluginClass = this.plugins.get(config.id);
-      
+
       if (!PluginClass) {
         console.warn(`Unknown anomaly plugin: ${config.id}`);
         continue;
@@ -70,29 +70,31 @@ export class AnomalyEngine {
   }
 
   /**
-   * 特定のプラグインインスタンスを取得
-   * @param pluginId プラグインID
+   * Get specific plugin instance
+   * @param pluginId Plugin ID
    */
   getInstance(pluginId: string): BaseAnomalyPlugin | null {
-    return this.activeInstances.find(instance => instance.id === pluginId) || null;
+    return (
+      this.activeInstances.find((instance) => instance.id === pluginId) || null
+    );
   }
 
   /**
-   * すべてのアクティブなプラグインをクリーンアップ
+   * Clean up all active plugins
    */
   cleanup(): void {
-    this.activeInstances.forEach(instance => {
+    this.activeInstances.forEach((instance) => {
       try {
         instance.destroy();
       } catch (error) {
-        console.error('Error during plugin cleanup:', error);
+        console.error("Error during plugin cleanup:", error);
       }
     });
     this.activeInstances = [];
   }
 
   /**
-   * エンジンを破棄
+   * Destroy engine
    */
   destroy(): void {
     this.cleanup();
@@ -100,5 +102,4 @@ export class AnomalyEngine {
   }
 }
 
-// グローバルエンジンインスタンス
 export const anomalyEngine = new AnomalyEngine();

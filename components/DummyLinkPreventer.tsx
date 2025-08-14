@@ -1,31 +1,34 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
+/**
+ * Dummy link preventer component
+ * Prevents clicks on dummy links (href="#") to avoid unwanted navigation
+ * Useful for components that use dummy links for styling or layout purposes
+ * without actual navigation functionality.
+ */
 export function DummyLinkPreventer() {
   useEffect(() => {
-    // ダミーリンクのクリックを無効化
+    // Disable dummy link clicks
     const handleClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      
-      // クリックされた要素またはその親要素がアンカータグか確認
-      const anchor = target.closest('a');
-      
-      if (anchor && anchor.getAttribute('href') === '#') {
-        // href="#"のリンクのクリックを無効化
+
+      // Check if clicked element or its parent is an anchor tag
+      const anchor = target.closest("a");
+
+      if (anchor && anchor.getAttribute("href") === "#") {
         event.preventDefault();
         event.stopPropagation();
-        console.log('Dummy link click prevented');
+        console.log("Dummy link click prevented");
         return false;
       }
     };
 
-    // キャプチャフェーズでイベントを捕捉（早期に処理）
-    document.addEventListener('click', handleClick, true);
+    document.addEventListener("click", handleClick, true);
 
-    // クリーンアップ
     return () => {
-      document.removeEventListener('click', handleClick, true);
+      document.removeEventListener("click", handleClick, true);
     };
   }, []);
 

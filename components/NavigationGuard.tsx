@@ -1,51 +1,48 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export function NavigationGuard() {
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    // ブラウザバック/フォワードの検出
-    const handlePopState = (event: PopStateEvent) => {
-      // ハッシュのみの変更は無視
-      const currentUrl = window.location.href;
-      const previousUrl = document.referrer;
-      
-      // URLのパス部分が変わっていない場合（ハッシュのみの変更）は無視
+    // Detect browser back/forward
+    const handlePopState = (_event: PopStateEvent) => {
+      // Ignore if URL path hasn't changed (hash-only change)
       if (window.location.pathname === pathname) {
         return;
       }
-      
-      // 記事ページでのブラウザバック/フォワードを検出
-      if (pathname.startsWith('/articles/')) {
-        console.log('Browser navigation detected - redirecting to step 1');
-        // ブラウザの履歴操作を検出したらステップ1に戻す
-        router.replace('/articles/1');
+
+      // Detect browser back/forward on article pages
+      if (pathname.startsWith("/articles/")) {
+        console.log("Browser navigation detected - redirecting to step 1");
+        // Reset to step 1 if browser history operation detected
+        router.replace("/articles/1");
       }
     };
 
-    // ページ離脱前の警告
+    // Warning before page exit
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-      if (pathname.startsWith('/articles/') && pathname !== '/articles/1') {
+      if (pathname.startsWith("/articles/") && pathname !== "/articles/1") {
         event.preventDefault();
-        event.returnValue = 'ゲーム中です。ページを離れると最初からやり直しになります。';
+        event.returnValue =
+          "ゲーム中です。ページを離れると最初からやり直しになります。";
       }
     };
 
-    // イベントリスナーの登録
-    window.addEventListener('popstate', handlePopState);
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    // Register event listeners
+    window.addEventListener("popstate", handlePopState);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
-    // 履歴スタックに現在のページを追加（ブラウザバック検出用）
-    window.history.pushState({ page: pathname }, '', pathname);
+    // Add current page to history stack (for browser back detection)
+    window.history.pushState({ page: pathname }, "", pathname);
 
-    // クリーンアップ
+    // Cleanup
     return () => {
-      window.removeEventListener('popstate', handlePopState);
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [pathname, router]);
 

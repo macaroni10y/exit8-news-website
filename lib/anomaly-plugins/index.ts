@@ -1,25 +1,29 @@
-// 異変プラグインのエクスポート
-export { BaseAnomalyPlugin } from './BaseAnomalyPlugin';
-export { AnomalyEngine, anomalyEngine } from './AnomalyEngine';
-export { LayoutCollapsePlugin } from './LayoutCollapsePlugin';
-export { ImageSwapPlugin } from './ImageSwapPlugin';
-export { TextCorruptionPlugin } from './TextCorruptionPlugin';
-export { PeriodRemovalPlugin } from './PeriodRemovalPlugin';
+// Export anomaly plugins
 
-// プラグイン自動登録
-import { anomalyEngine } from './AnomalyEngine';
-import { LayoutCollapsePlugin } from './LayoutCollapsePlugin';
-import { ImageSwapPlugin } from './ImageSwapPlugin';
-import { TextCorruptionPlugin } from './TextCorruptionPlugin';
-import { PeriodRemovalPlugin } from './PeriodRemovalPlugin';
+export { AnomalyEngine, anomalyEngine } from "./AnomalyEngine";
+export { BaseAnomalyPlugin } from "./BaseAnomalyPlugin";
+export { ImageSwapPlugin } from "./ImageSwapPlugin";
+export { LayoutCollapsePlugin } from "./LayoutCollapsePlugin";
+export { PeriodRemovalPlugin } from "./PeriodRemovalPlugin";
+export { ReverseScrollPlugin } from "./ReverseScrollPlugin";
+export { TextCorruptionPlugin } from "./TextCorruptionPlugin";
 
-// 利用可能なプラグインを自動登録
+// Automatic plugin registration
+import { anomalyEngine } from "./AnomalyEngine";
+import { ImageSwapPlugin } from "./ImageSwapPlugin";
+import { LayoutCollapsePlugin } from "./LayoutCollapsePlugin";
+import { PeriodRemovalPlugin } from "./PeriodRemovalPlugin";
+import { ReverseScrollPlugin } from "./ReverseScrollPlugin";
+import { TextCorruptionPlugin } from "./TextCorruptionPlugin";
+
+// Automatically register available plugins
 export function registerAllPlugins(): void {
   anomalyEngine.registerPlugin(LayoutCollapsePlugin);
   anomalyEngine.registerPlugin(ImageSwapPlugin);
   anomalyEngine.registerPlugin(TextCorruptionPlugin);
   anomalyEngine.registerPlugin(PeriodRemovalPlugin);
+  anomalyEngine.registerPlugin(ReverseScrollPlugin);
 }
 
-// デフォルトで全プラグインを登録
+// Register all plugins by default
 registerAllPlugins();

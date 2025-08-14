@@ -1,13 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import { AnomalyPluginConfig } from '@/lib/types';
-import { anomalyEngine } from '@/lib/anomaly-plugins/AnomalyEngine';
-import { LayoutCollapsePlugin } from '@/lib/anomaly-plugins/LayoutCollapsePlugin';
-import { ImageSwapPlugin } from '@/lib/anomaly-plugins/ImageSwapPlugin';
-import { TextCorruptionPlugin } from '@/lib/anomaly-plugins/TextCorruptionPlugin';
-import { ReverseScrollPlugin } from '@/lib/anomaly-plugins/ReverseScrollPlugin';
-import { PeriodRemovalPlugin } from '@/lib/anomaly-plugins';
+import { useEffect, useRef } from "react";
+import { anomalyEngine } from "@/lib/anomaly-plugins";
+import type { AnomalyPluginConfig } from "@/lib/types";
 
 interface AnomalyEffectProps {
   plugins: AnomalyPluginConfig[];
@@ -15,42 +10,22 @@ interface AnomalyEffectProps {
 }
 
 /**
- * 汎用異変エフェクトコンポーネント
- * 子要素に対して指定された異変プラグインを適用する
+ * Generic anomaly effect component
+ * Applies specified anomaly plugins to child elements
  */
 export function AnomalyEffect({ plugins, children }: AnomalyEffectProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // プラグインを登録（初回のみ）
-    if (!anomalyEngine.hasPlugin('layout-collapse')) {
-      anomalyEngine.registerPlugin(LayoutCollapsePlugin);
-    }
-    if (!anomalyEngine.hasPlugin('image-swap')) {
-      anomalyEngine.registerPlugin(ImageSwapPlugin);
-    }
-    if (!anomalyEngine.hasPlugin('text-corruption')) {
-      anomalyEngine.registerPlugin(TextCorruptionPlugin);
-    }
-    if (!anomalyEngine.hasPlugin('reverse-scroll')) {
-      anomalyEngine.registerPlugin(ReverseScrollPlugin);
-    }
-    if (!anomalyEngine.hasPlugin('period-removal')) {
-      anomalyEngine.registerPlugin(PeriodRemovalPlugin)
-    }
-
-    // 異変を実行
     if (containerRef.current && plugins.length > 0) {
       anomalyEngine.executeAnomalies(plugins, containerRef.current);
     }
 
-    // クリーンアップ
     return () => {
       anomalyEngine.cleanup();
     };
   }, [plugins]);
 
-  // コンポーネントがアンマウントされる時のクリーンアップ
   useEffect(() => {
     return () => {
       anomalyEngine.cleanup();
