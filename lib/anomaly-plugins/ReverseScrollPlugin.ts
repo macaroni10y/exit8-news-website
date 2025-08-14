@@ -1,8 +1,8 @@
-import { BaseAnomalyPlugin } from './BaseAnomalyPlugin';
+import { BaseAnomalyPlugin } from "./BaseAnomalyPlugin";
 
 /**
- * 逆スクロール異変プラグイン
- * 見た目は通常通りだが、スクロール操作が逆向きになる
+ * Reverse Scroll Anomaly Plugin
+ * Looks normal but scroll operations are reversed
  */
 export class ReverseScrollPlugin extends BaseAnomalyPlugin {
   private isScrollReversed: boolean = false;
@@ -14,7 +14,7 @@ export class ReverseScrollPlugin extends BaseAnomalyPlugin {
 
   constructor(config: any) {
     super(config);
-    
+
     this.wheelHandler = (e: WheelEvent) => {
       if (this.isScrollReversed) {
         e.preventDefault();
@@ -40,31 +40,31 @@ export class ReverseScrollPlugin extends BaseAnomalyPlugin {
 
     this.keyHandler = (e: KeyboardEvent) => {
       if (this.isScrollReversed) {
-        const scrollAmount = 40; // 通常のスクロール量
-        const pageScrollAmount = window.innerHeight * 0.8; // ページスクロール量
-        
+        const scrollAmount = 40; // Normal scroll amount
+        const pageScrollAmount = window.innerHeight * 0.8; // Page scroll amount
+
         switch (e.key) {
-          case 'ArrowDown':
+          case "ArrowDown":
             e.preventDefault();
             window.scrollBy(0, -scrollAmount);
             break;
-          case 'ArrowUp':
+          case "ArrowUp":
             e.preventDefault();
             window.scrollBy(0, scrollAmount);
             break;
-          case 'PageDown':
+          case "PageDown":
             e.preventDefault();
             window.scrollBy(0, -pageScrollAmount);
             break;
-          case 'PageUp':
+          case "PageUp":
             e.preventDefault();
             window.scrollBy(0, pageScrollAmount);
             break;
-          case 'End':
+          case "End":
             e.preventDefault();
             window.scrollTo(0, 0);
             break;
-          case 'Home':
+          case "Home":
             e.preventDefault();
             window.scrollTo(0, document.body.scrollHeight);
             break;
@@ -74,18 +74,18 @@ export class ReverseScrollPlugin extends BaseAnomalyPlugin {
   }
 
   get id(): string {
-    return 'reverse-scroll';
+    return "reverse-scroll";
   }
 
   get description(): string {
-    return 'スクロール操作を逆向きにする異変（見た目は通常通り）';
+    return "Anomaly that reverses scroll operations (looks normal visually)";
   }
 
   async execute(element: HTMLElement): Promise<void> {
-    const { 
-      intensity = 'full',
+    const {
+      intensity = "full",
       duration,
-      visualFeedback = false 
+      visualFeedback = false,
     } = this.config.config;
 
     if (this.isScrollReversed) {
@@ -94,25 +94,29 @@ export class ReverseScrollPlugin extends BaseAnomalyPlugin {
 
     this.isScrollReversed = true;
 
-    // ホイールイベントリスナーを追加
-    window.addEventListener('wheel', this.wheelHandler, { passive: false });
-    
-    // タッチイベントリスナーを追加（モバイル対応）
-    window.addEventListener('touchstart', this.touchHandler, { passive: false });
-    window.addEventListener('touchmove', this.touchMoveHandler, { passive: false });
-    
-    // キーボードイベントリスナーを追加（矢印キー対応）
-    window.addEventListener('keydown', this.keyHandler, { passive: false });
+    // Add wheel event listener
+    window.addEventListener("wheel", this.wheelHandler, { passive: false });
 
-    // 視覚的フィードバックが有効な場合、微かな効果を追加
+    // Add touch event listeners (mobile support)
+    window.addEventListener("touchstart", this.touchHandler, {
+      passive: false,
+    });
+    window.addEventListener("touchmove", this.touchMoveHandler, {
+      passive: false,
+    });
+
+    // Add keyboard event listener (arrow key support)
+    window.addEventListener("keydown", this.keyHandler, { passive: false });
+
+    // Add subtle effect if visual feedback is enabled
     if (visualFeedback) {
       this.applyStyles(element, {
-        filter: 'hue-rotate(180deg)',
-        transition: 'filter 0.3s ease'
+        filter: "hue-rotate(180deg)",
+        transition: "filter 0.3s ease",
       });
     }
 
-    // 期間指定がある場合、一定時間後に元に戻す
+    // If duration is specified, revert after certain time
     if (duration) {
       this.timeoutId = window.setTimeout(() => {
         this.cleanup();
@@ -129,20 +133,20 @@ export class ReverseScrollPlugin extends BaseAnomalyPlugin {
 
     this.isScrollReversed = false;
 
-    // イベントリスナーを削除
-    window.removeEventListener('wheel', this.wheelHandler);
-    window.removeEventListener('touchstart', this.touchHandler);
-    window.removeEventListener('touchmove', this.touchMoveHandler);
-    window.removeEventListener('keydown', this.keyHandler);
+    // Remove event listeners
+    window.removeEventListener("wheel", this.wheelHandler);
+    window.removeEventListener("touchstart", this.touchHandler);
+    window.removeEventListener("touchmove", this.touchMoveHandler);
+    window.removeEventListener("keydown", this.keyHandler);
 
-    // 視覚効果をリセット
+    // Reset visual effects
     if (this.element) {
       this.applyStyles(this.element, {
-        filter: '',
-        transition: ''
+        filter: "",
+        transition: "",
       });
     }
 
-    console.log('ReverseScrollPlugin cleanup completed');
+    console.log("ReverseScrollPlugin cleanup completed");
   }
 }

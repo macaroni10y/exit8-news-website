@@ -1,4 +1,4 @@
-import { Article, AnomalyPattern } from './types';
+import type { AnomalyPattern, Article } from "./types";
 
 const articleTitle = "新しい図書館が来春オープン予定";
 
@@ -79,7 +79,7 @@ const articleContent = `市内中心部に建設中の新図書館が、来年4�
 グランドオープンの際は、記念式典や作家による講演会、子ども向けイベントなど、さまざまな記念行事を予定しています。
 
 市教育長は「新図書館は、市民の知的好奇心を育み、生涯学習を支援する重要な施設となる。多くの方に愛される図書館を目指したい」と意気込みを語っています。`;
-// 記事データ（最小限のサンプル）
+// Article data (minimal sample)
 export const ARTICLES: Article[] = [
   {
     id: "article-1",
@@ -87,10 +87,10 @@ export const ARTICLES: Article[] = [
     title: articleTitle,
     content: articleContent,
     publishDate: "2025-01-15",
-    imageUrl: "/images/dummy.png"
+    imageUrl: "/images/dummy.png",
   },
   {
-    id: "article-2", 
+    id: "article-2",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -98,34 +98,34 @@ export const ARTICLES: Article[] = [
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
-        id: 'layout-collapse',
-        trigger: 'time',
+        id: "layout-collapse",
+        trigger: "time",
         delay: 3000,
         config: {
-          intensity: 'medium',
-          duration: 2000
-        }
-      }
-    ]
+          intensity: "medium",
+          duration: 2000,
+        },
+      },
+    ],
   },
   {
     id: "article-3",
-    isAnomaly: true, 
+    isAnomaly: true,
     title: articleTitle,
     content: articleContent,
     publishDate: "2025-01-15",
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
-        id: 'reverse-scroll',
-        trigger: 'time',
+        id: "reverse-scroll",
+        trigger: "time",
         delay: 2500,
         config: {
-          intensity: 'full',
-          visualFeedback: false
-        }
-      }
-    ]
+          intensity: "full",
+          visualFeedback: false,
+        },
+      },
+    ],
   },
   {
     id: "article-4",
@@ -136,15 +136,15 @@ export const ARTICLES: Article[] = [
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
-        id: 'image-swap',
-        trigger: 'time',
+        id: "image-swap",
+        trigger: "time",
         delay: 2000,
         config: {
-          gifUrl: '/images/dummy_dots.gif',
-          transition: false
-        }
-      }
-    ]
+          gifUrl: "/images/dummy_dots.gif",
+          transition: false,
+        },
+      },
+    ],
   },
   {
     id: "article-5",
@@ -155,15 +155,15 @@ export const ARTICLES: Article[] = [
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
-        id: 'text-corruption',
-        trigger: 'time',
+        id: "text-corruption",
+        trigger: "time",
         delay: 4000,
         config: {
-          intensity: 'progressive',
-          preserveSpaces: true
-        }
-      }
-    ]
+          intensity: "progressive",
+          preserveSpaces: true,
+        },
+      },
+    ],
   },
   {
     id: "article-6",
@@ -174,34 +174,34 @@ export const ARTICLES: Article[] = [
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
-        id: 'period-removal',
-        trigger: 'immediate',
-        config: {}
-      }
-    ]
-  }
+        id: "period-removal",
+        trigger: "immediate",
+        config: {},
+      },
+    ],
+  },
 ];
 
-// 異変パターン定義
+// Anomaly pattern definitions
 export const ANOMALY_PATTERNS: Record<string, AnomalyPattern> = {
-  'content-change': {
-    type: 'content',
-    trigger: 'time', 
-    config: { delay: 3000 }
+  "content-change": {
+    type: "content",
+    trigger: "time",
+    config: { delay: 3000 },
   },
-  'layout-collapse': {
-    type: 'layout',
-    trigger: 'scroll',
-    config: { breakPoint: 0.5 }
+  "layout-collapse": {
+    type: "layout",
+    trigger: "scroll",
+    config: { breakPoint: 0.5 },
   },
-  'gif-image': {
-    type: 'image',
-    trigger: 'immediate',
-    config: {}
-  }
+  "gif-image": {
+    type: "image",
+    trigger: "immediate",
+    config: {},
+  },
 };
 
-// ランダムに記事を選択する関数
+// Function to select a random article
 export function getRandomArticle(): Article {
   const randomIndex = Math.floor(Math.random() * ARTICLES.length);
   return ARTICLES[randomIndex];

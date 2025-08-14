@@ -1,156 +1,175 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createInitialToken, verifyToken, updateToken, updateTokenWithArticle, isValidTransition } from '@/lib/jwt';
-import { getRandomArticle, ARTICLES } from '@/lib/constants';
+import { type NextRequest, NextResponse } from "next/server";
+import { ARTICLES, getRandomArticle } from "@/lib/constants";
+import {
+  createInitialToken,
+  isValidTransition,
+  updateToken,
+  updateTokenWithArticle,
+  verifyToken,
+} from "@/lib/jwt";
 
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
-  
-  // /articles/* 以外は処理しない
-  if (!pathname.startsWith('/articles/')) {
+
+  // Skip processing for non-article paths
+  if (!pathname.startsWith("/articles/")) {
     return NextResponse.next();
   }
-  
-  // ステップを抽出
+
+  // Extract step number
   const stepMatch = pathname.match(/^\/articles\/(\d+)$/);
   if (!stepMatch) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
-  
+
   const step = parseInt(stepMatch[1], 10);
   if (step < 1 || step > 8) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
-  
-  // 現在のトークンを取得
-  const currentToken = request.cookies.get('play')?.value;
-  const clickedDirection = searchParams.get('clicked');
-  
-  // トークンの検証
+
+  // Get current token
+  const currentToken = request.cookies.get("play")?.value;
+  const clickedDirection = searchParams.get("clicked");
+
+  // Verify token
   const payload = currentToken ? await verifyToken(currentToken) : null;
-  
-  // 遷移の妥当性をチェック
+
+  // Check transition validity
   const validation = isValidTransition(payload, step, !!clickedDirection);
-  
-  // 不正な遷移を検出した場合はステップ1にリセット
+
+  // Reset to step 1 if invalid transition detected
   if (!validation.isValid && step !== 1) {
     console.log(`Invalid transition detected: ${validation.reason}`);
     const resetArticle = getRandomArticle();
     const newToken = await createInitialToken(resetArticle.id);
-    const response = NextResponse.redirect(new URL('/articles/1', request.url));
-    response.cookies.set('play', newToken, {
+    const response = NextResponse.redirect(new URL("/articles/1", request.url));
+    response.cookies.set("play", newToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 2
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 2,
     });
     return response;
   }
-  
-  // Step 1 の場合：初期トークン生成またはリセット
+
+  // Step 1: Generate initial token or reset
   if (step === 1) {
     if (!currentToken || !clickedDirection) {
-      // 初回アクセスまたはリセット時：新しいトークンを生成
+      // First access or reset: Generate new token
       const initialArticle = getRandomArticle();
       const newToken = await createInitialToken(initialArticle.id);
       const response = NextResponse.next();
-      response.cookies.set('play', newToken, {
+      response.cookies.set("play", newToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 60 * 60 * 2 // 2時間
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60 * 2, // 2 hours
       });
       return response;
     }
   }
-  
-  // Step 2以上の場合：有効なトークンが必要
+
+  // Step 2 and above: Valid token required
   if (step > 1 && !payload) {
     const resetArticle = getRandomArticle();
     const newToken = await createInitialToken(resetArticle.id);
-    const response = NextResponse.redirect(new URL('/articles/1', request.url));
-    response.cookies.set('play', newToken, {
+    const response = NextResponse.redirect(new URL("/articles/1", request.url));
+    response.cookies.set("play", newToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 2
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 2,
     });
     return response;
   }
-  
-  // 通常のページアクセス（ボタンクリックなし）で、記事IDが設定されていない場合
-  if (payload && !payload.currentArticleId && !searchParams.get('clicked')) {
+
+  // Normal page access (no button click) with no article ID set
+  if (payload && !payload.currentArticleId && !searchParams.get("clicked")) {
     const newArticle = getRandomArticle();
     const newToken = await updateTokenWithArticle(payload, newArticle.id);
     const response = NextResponse.next();
-    response.cookies.set('play', newToken, {
+    response.cookies.set("play", newToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 2
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 2,
     });
     return response;
   }
-  
-  // ユーザーがボタンをクリックした場合の処理
+
+  // Handle button click by user
   if (clickedDirection && payload) {
-    // JWTから現在の記事IDを取得
-    const currentArticle = ARTICLES.find(article => article.id === payload.currentArticleId);
+    // Get current article ID from JWT
+    const currentArticle = ARTICLES.find(
+      (article) => article.id === payload.currentArticleId,
+    );
     if (!currentArticle) {
-      // 記事が見つからない場合はリセット
+      // Reset if article not found
       const initialArticle = getRandomArticle();
       const newToken = await createInitialToken(initialArticle.id);
-      const response = NextResponse.redirect(new URL('/articles/1', request.url));
-      response.cookies.set('play', newToken, {
+      const response = NextResponse.redirect(
+        new URL("/articles/1", request.url),
+      );
+      response.cookies.set("play", newToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 60 * 60 * 2
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60 * 2,
       });
       return response;
     }
-    
-    // 正解判定
-    const expectDirection = currentArticle.isAnomaly ? 'prev' : 'next';
+
+    // Check if answer is correct
+    const expectDirection = currentArticle.isAnomaly ? "prev" : "next";
     const isCorrect = clickedDirection === expectDirection;
-    
+
     if (isCorrect) {
-      // 正解：次のステップまたはクリアページへ
+      // Correct: Go to next step or clear page
       const nextStep = step + 1;
       if (nextStep > 8) {
-        // ゲームクリア
-        const response = NextResponse.redirect(new URL('/clear', request.url));
+        // Game clear
+        const response = NextResponse.redirect(new URL("/clear", request.url));
         return response;
       } else {
-        // 次のステップ用の新しい記事を選択
+        // Select new article for next step
         const nextArticle = getRandomArticle();
-        const newToken = await updateToken(payload, nextStep as any, nextArticle.id, clickedDirection as any);
-        const response = NextResponse.redirect(new URL(`/articles/${nextStep}`, request.url));
-        response.cookies.set('play', newToken, {
+        const newToken = await updateToken(
+          payload,
+          nextStep as any,
+          nextArticle.id,
+          clickedDirection as any,
+        );
+        const response = NextResponse.redirect(
+          new URL(`/articles/${nextStep}`, request.url),
+        );
+        response.cookies.set("play", newToken, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'lax',
-          maxAge: 60 * 60 * 2
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "lax",
+          maxAge: 60 * 60 * 2,
         });
         return response;
       }
     } else {
-      // 不正解：リセット
+      // Incorrect: Reset
       const resetArticle = getRandomArticle();
       const newToken = await createInitialToken(resetArticle.id);
-      const response = NextResponse.redirect(new URL('/articles/1', request.url));
-      response.cookies.set('play', newToken, {
+      const response = NextResponse.redirect(
+        new URL("/articles/1", request.url),
+      );
+      response.cookies.set("play", newToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 60 * 60 * 2
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60 * 2,
       });
       return response;
     }
   }
-  
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/articles/:path*']
+  matcher: ["/articles/:path*"],
 };

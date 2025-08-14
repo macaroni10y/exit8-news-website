@@ -1,23 +1,24 @@
-import { BaseAnomalyPlugin } from './BaseAnomalyPlugin';
+import { BaseAnomalyPlugin } from "./BaseAnomalyPlugin";
 
 /**
- * レイアウト崩れ異変プラグイン
- * 要素を回転、移動、サイズ変更してレイアウトを崩す
+ * Layout Collapse Anomaly Plugin
+ * Collapses layout by rotating, moving, and resizing elements
  */
 export class LayoutCollapsePlugin extends BaseAnomalyPlugin {
-  private originalStyles: Map<HTMLElement, { [key: string]: string }> = new Map();
+  private originalStyles: Map<HTMLElement, { [key: string]: string }> =
+    new Map();
 
   get id(): string {
-    return 'layout-collapse';
+    return "layout-collapse";
   }
 
   get description(): string {
-    return '記事のレイアウトを徐々に崩す異変';
+    return "Anomaly that gradually collapses article layout";
   }
 
   async execute(element: HTMLElement): Promise<void> {
-    // CSSトランジションを有効にするスタイルを追加
-    const style = document.createElement('style');
+    // Add styles to enable CSS transitions
+    const style = document.createElement("style");
     style.textContent = `
       .anomaly-layout-collapse * {
         transition: transform 2s ease-in-out, 
@@ -49,10 +50,10 @@ export class LayoutCollapsePlugin extends BaseAnomalyPlugin {
     `;
     document.head.appendChild(style);
 
-    // メインコンテナにクラスを追加
-    element.classList.add('anomaly-layout-collapse');
+    // Add class to main container
+    element.classList.add("anomaly-layout-collapse");
 
-    // 段階的にレイアウトを崩していく
+    // Collapse layout gradually
     await this.collapseTitle(element);
     await this.wait(500);
     await this.shiftContent(element);
@@ -63,61 +64,61 @@ export class LayoutCollapsePlugin extends BaseAnomalyPlugin {
   }
 
   /**
-   * タイトルを歪ませる
+   * Distort titles
    */
   private async collapseTitle(element: HTMLElement): Promise<void> {
-    const titles = element.querySelectorAll('h1, h2, h3');
-    titles.forEach(title => {
+    const titles = element.querySelectorAll("h1, h2, h3");
+    titles.forEach((title) => {
       if (title instanceof HTMLElement) {
         this.saveOriginalStyle(title);
-        title.classList.add('anomaly-title-glitch');
+        title.classList.add("anomaly-title-glitch");
       }
     });
   }
 
   /**
-   * コンテンツを移動させる
+   * Shift content
    */
   private async shiftContent(element: HTMLElement): Promise<void> {
-    const contentDivs = element.querySelectorAll('div');
+    const contentDivs = element.querySelectorAll("div");
     contentDivs.forEach((div, index) => {
       if (div instanceof HTMLElement && index % 2 === 0) {
         this.saveOriginalStyle(div);
-        div.classList.add('anomaly-content-shift');
+        div.classList.add("anomaly-content-shift");
       }
     });
   }
 
   /**
-   * 段落を歪ませる
+   * Distort paragraphs
    */
   private async distortParagraphs(element: HTMLElement): Promise<void> {
-    const paragraphs = element.querySelectorAll('p');
+    const paragraphs = element.querySelectorAll("p");
     paragraphs.forEach((p, index) => {
       if (p instanceof HTMLElement && index % 2 === 1) {
         this.saveOriginalStyle(p);
-        p.classList.add('anomaly-paragraph-distort');
+        p.classList.add("anomaly-paragraph-distort");
       }
     });
   }
 
   /**
-   * メタデータ（日付など）を混乱させる
+   * Scramble metadata (dates etc.)
    */
   private async scrambleMetadata(element: HTMLElement): Promise<void> {
-    const timeElements = element.querySelectorAll('time');
-    const metaElements = element.querySelectorAll('.text-gray-600');
-    
-    [...timeElements, ...metaElements].forEach(el => {
+    const timeElements = element.querySelectorAll("time");
+    const metaElements = element.querySelectorAll(".text-gray-600");
+
+    [...timeElements, ...metaElements].forEach((el) => {
       if (el instanceof HTMLElement) {
         this.saveOriginalStyle(el);
-        el.classList.add('anomaly-date-scramble');
+        el.classList.add("anomaly-date-scramble");
       }
     });
   }
 
   /**
-   * 元のスタイルを保存
+   * Save original style
    */
   private saveOriginalStyle(element: HTMLElement): void {
     if (!this.originalStyles.has(element)) {
@@ -126,48 +127,49 @@ export class LayoutCollapsePlugin extends BaseAnomalyPlugin {
         transform: element.style.transform || computedStyle.transform,
         fontSize: element.style.fontSize || computedStyle.fontSize,
         color: element.style.color || computedStyle.color,
-        letterSpacing: element.style.letterSpacing || computedStyle.letterSpacing
+        letterSpacing:
+          element.style.letterSpacing || computedStyle.letterSpacing,
       });
     }
   }
 
   /**
-   * 指定時間待機
+   * Wait for specified time
    */
   private wait(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   cleanup(): void {
     if (!this.element) return;
 
-    // 追加したクラスを削除
-    this.element.classList.remove('anomaly-layout-collapse');
-    
-    // 子要素からも異変クラスを削除
+    // Remove added classes
+    this.element.classList.remove("anomaly-layout-collapse");
+
+    // Remove anomaly classes from child elements
     const anomalyElements = this.element.querySelectorAll(
-      '.anomaly-title-glitch, .anomaly-content-shift, .anomaly-paragraph-distort, .anomaly-date-scramble'
+      ".anomaly-title-glitch, .anomaly-content-shift, .anomaly-paragraph-distort, .anomaly-date-scramble",
     );
-    
-    anomalyElements.forEach(el => {
+
+    anomalyElements.forEach((el) => {
       el.classList.remove(
-        'anomaly-title-glitch',
-        'anomaly-content-shift', 
-        'anomaly-paragraph-distort',
-        'anomaly-date-scramble'
+        "anomaly-title-glitch",
+        "anomaly-content-shift",
+        "anomaly-paragraph-distort",
+        "anomaly-date-scramble",
       );
     });
 
-    // 元のスタイルを復元
+    // Restore original styles
     this.originalStyles.forEach((originalStyle, element) => {
       Object.assign(element.style, originalStyle);
     });
     this.originalStyles.clear();
 
-    // 追加したスタイルタグを削除
-    const styleElements = document.querySelectorAll('style');
-    styleElements.forEach(style => {
-      if (style.textContent && style.textContent.includes('anomaly-layout-collapse')) {
+    // Remove added style tags
+    const styleElements = document.querySelectorAll("style");
+    styleElements.forEach((style) => {
+      if (style.textContent?.includes("anomaly-layout-collapse")) {
         style.remove();
       }
     });

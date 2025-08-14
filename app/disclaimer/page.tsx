@@ -5,7 +5,7 @@ export default function Disclaimer() {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b-2 border-yellow-600 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
-          {/* トップナビゲーション */}
+          {/* Top navigation */}
           <div className="flex justify-between items-center py-2 text-xs sm:text-sm text-gray-600">
             <div className="flex space-x-2 sm:space-x-4">
               <span className="hidden sm:inline">2025年1月9日（木）</span>
@@ -14,33 +14,81 @@ export default function Disclaimer() {
               <span className="sm:hidden">☀15℃</span>
             </div>
             <div className="flex space-x-3 sm:space-x-4">
-              <a href="#" className="hover:text-yellow-600">ログイン</a>
-              <a href="#" className="hover:text-yellow-600 hidden sm:inline">会員登録</a>
+              <a href="#" className="hover:text-yellow-600">
+                ログイン
+              </a>
+              <a href="#" className="hover:text-yellow-600 hidden sm:inline">
+                会員登録
+              </a>
             </div>
           </div>
-          
-          {/* メインヘッダー */}
+
+          {/* Main header */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 space-y-2 sm:space-y-0">
             <Link href="/" className="text-2xl sm:text-4xl font-bold">
-              <span className="text-white bg-yellow-500 hover:bg-yellow-600 px-2 py-1">8番</span>
-              <span className="text-black hover:text-gray-800 ml-2">ニュース</span>
+              <span className="text-white bg-yellow-500 hover:bg-yellow-600 px-2 py-1">
+                8番
+              </span>
+              <span className="text-black hover:text-gray-800 ml-2">
+                ニュース
+              </span>
             </Link>
             <div className="text-left sm:text-right text-sm text-gray-500">
               <p className="hidden sm:block">信頼できる地域情報をお届け</p>
             </div>
           </div>
-          
-          {/* ナビゲーションメニュー */}
+
+          {/* Navigation menu */}
           <nav className="border-t border-gray-200">
             <div className="flex space-x-4 sm:space-x-8 py-3 overflow-x-auto scrollbar-hide">
-              <Link href="/" className="text-gray-700 hover:text-yellow-600 font-medium whitespace-nowrap">トップ</Link>
-              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">政治</a>
-              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">経済</a>
-              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">社会</a>
-              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">スポーツ</a>
-              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">文化</a>
-              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">地域</a>
-              <a href="#" className="text-gray-700 hover:text-yellow-600 whitespace-nowrap">天気</a>
+              <Link
+                href="/"
+                className="text-gray-700 hover:text-yellow-600 font-medium whitespace-nowrap"
+              >
+                トップ
+              </Link>
+              <a
+                href="#"
+                className="text-gray-700 hover:text-yellow-600 whitespace-nowrap"
+              >
+                政治
+              </a>
+              <a
+                href="#"
+                className="text-gray-700 hover:text-yellow-600 whitespace-nowrap"
+              >
+                経済
+              </a>
+              <a
+                href="#"
+                className="text-gray-700 hover:text-yellow-600 whitespace-nowrap"
+              >
+                社会
+              </a>
+              <a
+                href="#"
+                className="text-gray-700 hover:text-yellow-600 whitespace-nowrap"
+              >
+                スポーツ
+              </a>
+              <a
+                href="#"
+                className="text-gray-700 hover:text-yellow-600 whitespace-nowrap"
+              >
+                文化
+              </a>
+              <a
+                href="#"
+                className="text-gray-700 hover:text-yellow-600 whitespace-nowrap"
+              >
+                地域
+              </a>
+              <a
+                href="#"
+                className="text-gray-700 hover:text-yellow-600 whitespace-nowrap"
+              >
+                天気
+              </a>
             </div>
           </nav>
         </div>
@@ -53,9 +101,11 @@ export default function Disclaimer() {
           </h1>
 
           <div className="space-y-8 text-gray-700">
-            {/* ゲームについて */}
+            {/* About the game */}
             <section>
-              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">このサイトについて</h2>
+              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">
+                このサイトについて
+              </h2>
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
                   「8番ニュース」は、人気ゲーム「8番出口」をオマージュしたブラウザゲームです。
@@ -68,48 +118,54 @@ export default function Disclaimer() {
               </div>
             </section>
 
-            {/* 技術的制約について */}
+            {/* Technical constraints */}
             <section>
-              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">技術的な制約と仕様について</h2>
+              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">
+                技術的な制約と仕様について
+              </h2>
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
                   ゲームの都合上、一般的なウェブサイトとは異なりアクセシビリティ等の各種標準やプラクティスから逸脱した動作をします。
                 </p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
                   <li>記事ページへの直接アクセスが制限されています</li>
-                  <li>ブラウザの戻るボタンやページ更新が適切に動作しない場合があります</li>
+                  <li>
+                    ブラウザの戻るボタンやページ更新が適切に動作しない場合があります
+                  </li>
                   <li>一部のゲーム進行に無関係なリンクは無効化されています</li>
-                  <li>記事の表示中に意図的な「異変」が発生する場合があります</li>
+                  <li>
+                    記事の表示中に意図的な「異変」が発生する場合があります
+                  </li>
                   <li>JavaScriptが無効な環境では正常に動作しません</li>
                 </ul>
               </div>
             </section>
 
-            {/* プライバシーについて */}
+            {/* Privacy */}
             <section>
-              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">データの取り扱いについて</h2>
+              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">
+                データの取り扱いについて
+              </h2>
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
                   このサイトでは、ゲーム進行状態の保存のために必要な最低限のCookieを使用しています。
                   個人を特定できる情報は一切収集していません。
                 </p>
-                <p>
-                  ゲーム進行データは一定時間後に自動的に削除されます。
-                </p>
+                <p>ゲーム進行データは一定時間後に自動的に削除されます。</p>
               </div>
             </section>
 
-            {/* 免責事項 */}
+            {/* Disclaimer */}
             <section>
-              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">免責事項</h2>
+              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">
+                免責事項
+              </h2>
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
                   このサイトは娯楽目的で制作されています。
                   サイトの利用により生じたいかなる損害についても、制作者は一切の責任を負いません。
                 </p>
-                <p>
-                  予告なくサービスの変更・停止を行う場合があります。
-                </p>
+                <p>予告なくサービスの変更・停止を行う場合があります。</p>
                 <p>
                   本サイトの一部画像・文章は生成AI（OpenAI等）により生成されています。
                   これらは演出目的であり、現実の写真・事実を示すものではありません。
@@ -117,9 +173,11 @@ export default function Disclaimer() {
               </div>
             </section>
 
-            {/* 著作権について */}
+            {/* Copyright */}
             <section>
-              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">著作権について</h2>
+              <h2 className="text-xl font-semibold text-black underline decoration-yellow-500 decoration-2 mb-4">
+                著作権について
+              </h2>
               <div className="space-y-3 text-sm sm:text-base leading-relaxed">
                 <p>
                   このサイトのコンテンツは、オリジナルゲーム「8番出口」にインスパイアされて制作されています。「8番出口」の権利者とは一切関係ありません。記載の名称・ロゴは各権利者に帰属します。
@@ -129,9 +187,9 @@ export default function Disclaimer() {
             </section>
           </div>
 
-          {/* 戻るボタン */}
+          {/* Back button */}
           <div className="mt-10 text-center border-t pt-6">
-            <Link 
+            <Link
               href="/"
               className="inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-600 transition-colors"
             >
@@ -145,45 +203,121 @@ export default function Disclaimer() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div>
-              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">ニュース</h4>
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+                ニュース
+              </h4>
               <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-                <li><a href="#" className="hover:text-gray-300">速報</a></li>
-                <li><a href="#" className="hover:text-gray-300">政治</a></li>
-                <li><a href="#" className="hover:text-gray-300">経済</a></li>
-                <li><a href="#" className="hover:text-gray-300">社会</a></li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    速報
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    政治
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    経済
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    社会
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">地域情報</h4>
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+                地域情報
+              </h4>
               <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-                <li><a href="#" className="hover:text-gray-300">イベント</a></li>
-                <li><a href="#" className="hover:text-gray-300">お知らせ</a></li>
-                <li><a href="#" className="hover:text-gray-300">施設案内</a></li>
-                <li><a href="#" className="hover:text-gray-300">交通情報</a></li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    イベント
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    お知らせ
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    施設案内
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    交通情報
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">サービス</h4>
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+                サービス
+              </h4>
               <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-                <li><a href="#" className="hover:text-gray-300">会員登録</a></li>
-                <li><a href="#" className="hover:text-gray-300">お問い合わせ</a></li>
-                <li><a href="#" className="hover:text-gray-300">広告掲載</a></li>
-                <li><a href="#" className="hover:text-gray-300">RSS</a></li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    会員登録
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    お問い合わせ
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    広告掲載
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    RSS
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">8番ニュースについて</h4>
+              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+                8番ニュースについて
+              </h4>
               <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-                <li><a href="#" className="hover:text-gray-300">会社概要</a></li>
-                <li><a href="#" className="hover:text-gray-300">プライバシーポリシー</a></li>
-                <li><a href="#" className="hover:text-gray-300">利用規約</a></li>
-                <li><Link href="/disclaimer" className="hover:text-gray-300">注意事項</Link></li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    会社概要
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    プライバシーポリシー
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-gray-300">
+                    利用規約
+                  </a>
+                </li>
+                <li>
+                  <Link href="/disclaimer" className="hover:text-gray-300">
+                    注意事項
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-600 pt-4 sm:pt-6 text-center">
-            <p className="text-xs sm:text-sm text-gray-400">&copy; 2025 8番ニュース. All rights reserved.</p>
-            <p className="text-xs text-gray-500 mt-1 sm:mt-2">本サイトはゲーム用の架空のニュースサイトです</p>
+            <p className="text-xs sm:text-sm text-gray-400">
+              &copy; 2025 8番ニュース. All rights reserved.
+            </p>
+            <p className="text-xs text-gray-500 mt-1 sm:mt-2">
+              本サイトはゲーム用の架空のニュースサイトです
+            </p>
           </div>
         </div>
       </footer>

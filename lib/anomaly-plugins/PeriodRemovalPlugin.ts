@@ -1,84 +1,85 @@
-import { BaseAnomalyPlugin } from './BaseAnomalyPlugin';
+import { BaseAnomalyPlugin } from "./BaseAnomalyPlugin";
 
 /**
- * 句点削除異変プラグイン
- * 記事内のテキストから「。」（句点）だけが即座に削除される
+ * Period Removal Anomaly Plugin
+ * Instantly removes only periods (。) from article text
  */
 export class PeriodRemovalPlugin extends BaseAnomalyPlugin {
   private originalTexts: Map<Text, string> = new Map();
   private textNodes: Text[] = [];
 
   get id(): string {
-    return 'period-removal';
+    return "period-removal";
   }
 
   get description(): string {
-    return '記事のテキストから句点（。）が削除される異変';
+    return "Anomaly that removes periods (。) from article text";
   }
 
   async execute(element: HTMLElement): Promise<void> {
-    // すべてのテキストノードを収集
+    // Collect all text nodes
     this.collectTextNodes(element);
-    
-    // 元のテキストを保存
-    this.textNodes.forEach(node => {
-      this.originalTexts.set(node, node.textContent || '');
+
+    // Save original text
+    this.textNodes.forEach((node) => {
+      this.originalTexts.set(node, node.textContent || "");
     });
 
-    // 即座に句点を削除
+    // Remove periods immediately
     this.removePeriods();
   }
 
   /**
-   * テキストノードを収集する
+   * Collect text nodes
    */
   private collectTextNodes(element: HTMLElement): void {
-    const walker = document.createTreeWalker(
-      element,
-      NodeFilter.SHOW_TEXT,
-      {
-        acceptNode: (node) => {
-          // 空白のみのテキストノードは除外
-          if (node.textContent && node.textContent.trim().length > 0) {
-            // scriptやstyleタグ内のテキストは除外
-            const parent = node.parentElement;
-            if (parent && parent.tagName !== 'SCRIPT' && parent.tagName !== 'STYLE') {
-              return NodeFilter.FILTER_ACCEPT;
-            }
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
+        // Exclude text nodes with only whitespace
+        if (node.textContent && node.textContent.trim().length > 0) {
+          // Exclude text inside script and style tags
+          const parent = node.parentElement;
+          if (
+            parent &&
+            parent.tagName !== "SCRIPT" &&
+            parent.tagName !== "STYLE"
+          ) {
+            return NodeFilter.FILTER_ACCEPT;
           }
-          return NodeFilter.FILTER_REJECT;
         }
-      }
-    );
+        return NodeFilter.FILTER_REJECT;
+      },
+    });
 
     this.textNodes = [];
-    let node;
+    let node: Node | null;
     while ((node = walker.nextNode())) {
       this.textNodes.push(node as Text);
     }
   }
 
   /**
-   * 句点を削除する
+   * Remove periods
    */
   private removePeriods(): void {
-    this.textNodes.forEach(node => {
-      const currentText = node.textContent || '';
-      // 「。」のみを削除（その他の句読点は維持）
-      const modifiedText = currentText.replace(/。/g, '　');
+    this.textNodes.forEach((node) => {
+      const currentText = node.textContent || "";
+      // Remove only "。" (maintain other punctuation)
+      const modifiedText = currentText.replace(/。/g, "　");
       node.textContent = modifiedText;
     });
   }
 
   cleanup(): void {
-    // 元のテキストを復元
+    // Restore original text
     this.originalTexts.forEach((originalText, node) => {
-      if (node.parentNode) { // ノードがまだDOMにある場合のみ
+      if (node.parentNode) {
+        // Only if node is still in DOM
         node.textContent = originalText;
       }
     });
 
-    // データをクリア
+    // Clear data
     this.originalTexts.clear();
     this.textNodes = [];
   }
