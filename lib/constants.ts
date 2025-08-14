@@ -140,7 +140,7 @@ export const ARTICLES: Article[] = [
         trigger: 'time',
         delay: 2000,
         config: {
-          gifUrl: '/images/hellmo.gif',
+          gifUrl: '/images/dummy_dots.gif',
           transition: false
         }
       }
@@ -155,12 +155,12 @@ export const ARTICLES: Article[] = [
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
-        id: 'image-swap',
+        id: 'text-corruption',
         trigger: 'time',
-        delay: 3000,
+        delay: 4000,
         config: {
-          gifUrl: '/images/news-animated.gif',
-          transition: true
+          intensity: 'progressive',
+          preserveSpaces: true
         }
       }
     ]
@@ -174,13 +174,9 @@ export const ARTICLES: Article[] = [
     imageUrl: "/images/dummy.png",
     anomalyPlugins: [
       {
-        id: 'text-corruption',
-        trigger: 'time',
-        delay: 4000,
-        config: {
-          intensity: 'progressive',
-          preserveSpaces: true
-        }
+        id: 'period-removal',
+        trigger: 'immediate',
+        config: {}
       }
     ]
   }
