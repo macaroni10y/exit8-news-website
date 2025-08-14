@@ -9,7 +9,7 @@ export class TextCorruptionPlugin extends BaseAnomalyPlugin {
   private corruptionLevel: number = 0;
   private textNodes: Text[] = [];
 
-  // Corruption character patterns
+  // Corruption character patterns (simplified and subtle)
   private readonly corruptionPatterns = {
     level1: [
       "ぁ",
@@ -27,91 +27,8 @@ export class TextCorruptionPlugin extends BaseAnomalyPlugin {
       "っ",
       "ッ",
     ],
-    level2: [
-      "◆",
-      "◇",
-      "○",
-      "●",
-      "□",
-      "■",
-      "△",
-      "▲",
-      "▽",
-      "▼",
-      "※",
-      "〒",
-      "〓",
-      "〔",
-      "〕",
-    ],
-    level3: [
-      "👻",
-      "💀",
-      "🔥",
-      "⚡",
-      "🌀",
-      "💥",
-      "👁",
-      "🕳",
-      "⭐",
-      "🌙",
-      "☠",
-      "⚠",
-      "☢",
-      "☣",
-      "⬛",
-    ],
-    level4: [
-      "█",
-      "▓",
-      "▒",
-      "░",
-      "▀",
-      "▄",
-      "▌",
-      "▐",
-      "╳",
-      "╱",
-      "╲",
-      "╴",
-      "╵",
-      "╶",
-      "╷",
-    ],
-    zalgo: [
-      "\u0300",
-      "\u0301",
-      "\u0302",
-      "\u0303",
-      "\u0304",
-      "\u0305",
-      "\u0306",
-      "\u0307",
-      "\u0308",
-      "\u0309",
-      "\u030A",
-      "\u030B",
-      "\u030C",
-      "\u030D",
-      "\u030E",
-      "\u030F",
-      "\u0310",
-      "\u0311",
-      "\u0312",
-      "\u0313",
-      "\u0314",
-      "\u0315",
-      "\u0316",
-      "\u0317",
-      "\u0318",
-      "\u0319",
-      "\u031A",
-      "\u031B",
-      "\u031C",
-      "\u031D",
-      "\u031E",
-      "\u031F",
-    ],
+    level2: ["○", "●", "□", "■", "△", "▲"],
+    level3: ["░", "▒", "・", "‥", "…", "※"],
   };
 
   get id(): string {
@@ -173,8 +90,8 @@ export class TextCorruptionPlugin extends BaseAnomalyPlugin {
       this.corruptionLevel++;
       this.applyCorruption();
 
-      // Complete corruption at level 20
-      if (this.corruptionLevel >= 20) {
+      // Complete corruption at level 12
+      if (this.corruptionLevel >= 12) {
         if (this.intervalId !== null) {
           clearInterval(this.intervalId);
           this.intervalId = null;
@@ -187,7 +104,7 @@ export class TextCorruptionPlugin extends BaseAnomalyPlugin {
    * Apply corruption
    */
   private applyCorruption(): void {
-    const corruptionRate = Math.min(this.corruptionLevel * 5, 100); // Maximum 100%
+    const corruptionRate = Math.min(this.corruptionLevel * 8, 100); // Maximum 100%
 
     this.textNodes.forEach((node) => {
       const originalText = this.originalTexts.get(node) || "";
@@ -212,32 +129,16 @@ export class TextCorruptionPlugin extends BaseAnomalyPlugin {
   /**
    * Get corrupted character
    */
-  private getCorruptedChar(originalChar: string, level: number): string {
-    // Select corruption pattern based on level
+  private getCorruptedChar(_originalChar: string, level: number): string {
+    // Select corruption pattern based on level (simplified to 3 stages)
     let pattern: string[];
 
-    if (level <= 5) {
+    if (level <= 4) {
       pattern = this.corruptionPatterns.level1;
-    } else if (level <= 10) {
+    } else if (level <= 8) {
       pattern = this.corruptionPatterns.level2;
-    } else if (level <= 15) {
-      pattern = this.corruptionPatterns.level3;
     } else {
-      pattern = this.corruptionPatterns.level4;
-    }
-
-    // Add Zalgo text effect (level 15 and above)
-    if (level >= 15 && Math.random() > 0.7) {
-      const zalgoCount = Math.floor(Math.random() * 3) + 1;
-      let result = originalChar;
-      for (let i = 0; i < zalgoCount; i++) {
-        const zalgoChar =
-          this.corruptionPatterns.zalgo[
-            Math.floor(Math.random() * this.corruptionPatterns.zalgo.length)
-          ];
-        result += zalgoChar;
-      }
-      return result;
+      pattern = this.corruptionPatterns.level3;
     }
 
     // Select corruption character randomly
