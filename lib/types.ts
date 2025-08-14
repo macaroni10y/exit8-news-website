@@ -10,6 +10,9 @@ export interface PlayTokenPayload {
     answered: 'prev' | 'next'; // ユーザーの選択
   }[];
   exp: number;                  // 有効期限 (2時間)
+  lastValidStep: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;  // 最後に正当に到達したステップ
+  lastAction: 'next' | 'prev' | 'init' | null;    // 最後のアクション
+  lastActionTime: number;       // 最後のアクションのタイムスタンプ（Unix時間）
 }
 
 // 記事データ構造
