@@ -199,6 +199,22 @@ export const ARTICLES: Article[] = [
       },
     ],
   },
+  {
+    id: "article-8",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    imageUrl: "/images/dummy.png",
+    anomalyPlugins: [
+      {
+        id: "title-change",
+        trigger: "time",
+        delay: 3000,
+        config: {},
+      },
+    ],
+  },
 ];
 
 // Anomaly pattern definitions

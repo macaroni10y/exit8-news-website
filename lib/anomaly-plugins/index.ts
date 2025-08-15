@@ -8,6 +8,7 @@ export { PeriodRemovalPlugin } from "./PeriodRemovalPlugin";
 export { ReverseScrollPlugin } from "./ReverseScrollPlugin";
 export { ScrollVanishPlugin } from "./ScrollVanishPlugin";
 export { TextCorruptionPlugin } from "./TextCorruptionPlugin";
+export { TitleAnomalyPlugin } from "./TitleAnomalyPlugin";
 
 // Automatic plugin registration
 import { anomalyEngine } from "./AnomalyEngine";
@@ -17,6 +18,7 @@ import { PeriodRemovalPlugin } from "./PeriodRemovalPlugin";
 import { ReverseScrollPlugin } from "./ReverseScrollPlugin";
 import { ScrollVanishPlugin } from "./ScrollVanishPlugin";
 import { TextCorruptionPlugin } from "./TextCorruptionPlugin";
+import { TitleAnomalyPlugin } from "./TitleAnomalyPlugin";
 
 // Automatically register available plugins
 export function registerAllPlugins(): void {
@@ -26,6 +28,7 @@ export function registerAllPlugins(): void {
   anomalyEngine.registerPlugin(PeriodRemovalPlugin);
   anomalyEngine.registerPlugin(ReverseScrollPlugin);
   anomalyEngine.registerPlugin(ScrollVanishPlugin);
+  anomalyEngine.registerPlugin(TitleAnomalyPlugin);
 }
 
 // Register all plugins by default
