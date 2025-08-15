@@ -180,6 +180,25 @@ export const ARTICLES: Article[] = [
       },
     ],
   },
+  {
+    id: "article-7",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    imageUrl: "/images/dummy.png",
+    anomalyPlugins: [
+      {
+        id: "scroll-vanish",
+        trigger: "immediate",
+        config: {
+          vanishType: "hide",
+          targetElements: "p, h2, h3, img, ul, ol, blockquote",
+          transition: true,
+        },
+      },
+    ],
+  },
 ];
 
 // Anomaly pattern definitions
