@@ -10,6 +10,7 @@ export { ScrollVanishPlugin } from "./ScrollVanishPlugin";
 export { TextCorruptionPlugin } from "./TextCorruptionPlugin";
 export { TextReplacementPlugin } from "./TextReplacementPlugin";
 export { TitleAnomalyPlugin } from "./TitleAnomalyPlugin";
+export { WaterDropPlugin } from "./WaterDropPlugin";
 
 // Automatic plugin registration
 import { anomalyEngine } from "./AnomalyEngine";
@@ -21,6 +22,7 @@ import { ScrollVanishPlugin } from "./ScrollVanishPlugin";
 import { TextCorruptionPlugin } from "./TextCorruptionPlugin";
 import { TextReplacementPlugin } from "./TextReplacementPlugin";
 import { TitleAnomalyPlugin } from "./TitleAnomalyPlugin";
+import { WaterDropPlugin } from "./WaterDropPlugin";
 
 // Automatically register available plugins
 export function registerAllPlugins(): void {
@@ -32,6 +34,7 @@ export function registerAllPlugins(): void {
   anomalyEngine.registerPlugin(ScrollVanishPlugin);
   anomalyEngine.registerPlugin(TitleAnomalyPlugin);
   anomalyEngine.registerPlugin(TextReplacementPlugin);
+  anomalyEngine.registerPlugin(WaterDropPlugin);
 }
 
 // Register all plugins by default

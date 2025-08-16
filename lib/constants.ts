@@ -51,172 +51,175 @@ const articleContent = `
 
 // Article data (minimal sample)
 export const ARTICLES: Article[] = [
+  // {
+  //   id: "article-1",
+  //   isAnomaly: false,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  // },
+  // {
+  //   id: "article-2",
+  //   isAnomaly: true,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  //   anomalyPlugins: [
+  //     {
+  //       id: "layout-collapse",
+  //       trigger: "time",
+  //       delay: 3000,
+  //       config: {
+  //         intensity: "medium",
+  //         duration: 2000,
+  //       },
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: "article-3",
+  //   isAnomaly: true,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  //   anomalyPlugins: [
+  //     {
+  //       id: "reverse-scroll",
+  //       trigger: "time",
+  //       delay: 2500,
+  //       config: {
+  //         intensity: "full",
+  //         visualFeedback: false,
+  //       },
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: "article-4",
+  //   isAnomaly: true,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  //   anomalyPlugins: [
+  //     {
+  //       id: "image-swap",
+  //       trigger: "immediate",
+  //       config: {
+  //         targetImageUrl: "/images/machimeguri_pay_app.png",
+  //         replaceImageUrl: "/images/machimeguri_pay_app_anomaly.png",
+  //         transition: false,
+  //       },
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: "article-5",
+  //   isAnomaly: true,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  //   anomalyPlugins: [
+  //     {
+  //       id: "text-corruption",
+  //       trigger: "time",
+  //       delay: 4000,
+  //       config: {
+  //         intensity: "progressive",
+  //         preserveSpaces: true,
+  //       },
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: "article-6",
+  //   isAnomaly: true,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  //   anomalyPlugins: [
+  //     {
+  //       id: "period-removal",
+  //       trigger: "immediate",
+  //       config: {},
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: "article-7",
+  //   isAnomaly: true,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  //   anomalyPlugins: [
+  //     {
+  //       id: "scroll-vanish",
+  //       trigger: "immediate",
+  //       config: {
+  //         vanishType: "hide",
+  //         targetElements: "p, h2, h3, img, ul, ol, blockquote",
+  //         transition: true,
+  //       },
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: "article-8",
+  //   isAnomaly: true,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  //   anomalyPlugins: [
+  //     {
+  //       id: "title-change",
+  //       trigger: "time",
+  //       delay: 3000,
+  //       config: {},
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: "article-9",
+  //   isAnomaly: true,
+  //   title: articleTitle,
+  //   content: articleContent,
+  //   publishDate: "2025-01-15",
+  //   anomalyPlugins: [
+  //     {
+  //       id: "text-replacement",
+  //       trigger: "immediate",
+  //       config: {
+  //         replaceAll: true,
+  //         caseSensitive: true,
+  //         replacements: [
+  //           { from: "常連の再来店も可視化できた", to: "これを読んだら引き返して" },
+  //         ],
+  //       },
+  //     },
+  //   ],
+  // },
   {
-    id: "article-1",
-    isAnomaly: false,
-    title: articleTitle,
-    content: articleContent,
-    publishDate: "2025-01-15",
-  },
-  {
-    id: "article-2",
+    id: "article-10",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
     publishDate: "2025-01-15",
     anomalyPlugins: [
       {
-        id: "layout-collapse",
+        id: "water-drop",
         trigger: "time",
         delay: 3000,
         config: {
-          intensity: "medium",
-          duration: 2000,
-        },
-      },
-    ],
-  },
-  {
-    id: "article-3",
-    isAnomaly: true,
-    title: articleTitle,
-    content: articleContent,
-    publishDate: "2025-01-15",
-    anomalyPlugins: [
-      {
-        id: "reverse-scroll",
-        trigger: "time",
-        delay: 2500,
-        config: {
-          intensity: "full",
-          visualFeedback: false,
-        },
-      },
-    ],
-  },
-  {
-    id: "article-4",
-    isAnomaly: true,
-    title: articleTitle,
-    content: articleContent,
-    publishDate: "2025-01-15",
-    anomalyPlugins: [
-      {
-        id: "image-swap",
-        trigger: "immediate",
-        config: {
-          targetImageUrl: "/images/machimeguri_pay_app.png",
-          replaceImageUrl: "/images/machimeguri_pay_app_anomaly.png",
-          transition: false,
-        },
-      },
-    ],
-  },
-  {
-    id: "article-5",
-    isAnomaly: true,
-    title: articleTitle,
-    content: articleContent,
-    publishDate: "2025-01-15",
-    anomalyPlugins: [
-      {
-        id: "text-corruption",
-        trigger: "time",
-        delay: 4000,
-        config: {
-          intensity: "progressive",
-          preserveSpaces: true,
-        },
-      },
-    ],
-  },
-  {
-    id: "article-6",
-    isAnomaly: true,
-    title: articleTitle,
-    content: articleContent,
-    publishDate: "2025-01-15",
-    anomalyPlugins: [
-      {
-        id: "period-removal",
-        trigger: "immediate",
-        config: {},
-      },
-    ],
-  },
-  {
-    id: "article-7",
-    isAnomaly: true,
-    title: articleTitle,
-    content: articleContent,
-    publishDate: "2025-01-15",
-    anomalyPlugins: [
-      {
-        id: "scroll-vanish",
-        trigger: "immediate",
-        config: {
-          vanishType: "hide",
-          targetElements: "p, h2, h3, img, ul, ol, blockquote",
-          transition: true,
-        },
-      },
-    ],
-  },
-  {
-    id: "article-8",
-    isAnomaly: true,
-    title: articleTitle,
-    content: articleContent,
-    publishDate: "2025-01-15",
-    anomalyPlugins: [
-      {
-        id: "title-change",
-        trigger: "time",
-        delay: 3000,
-        config: {},
-      },
-    ],
-  },
-  {
-    id: "article-9",
-    isAnomaly: true,
-    title: articleTitle,
-    content: articleContent,
-    publishDate: "2025-01-15",
-    anomalyPlugins: [
-      {
-        id: "text-replacement",
-        trigger: "immediate",
-        config: {
-          replaceAll: true,
-          caseSensitive: true,
-          replacements: [
-            { from: "常連の再来店も可視化できた", to: "これを読んだら引き返して" },
-          ],
+          dropCount: 25,
+          duration: 5000,
+          minSize: 8,
+          maxSize: 20,
+          color: "rgba(59, 130, 246, 0.7)",
         },
       },
     ],
   },
 ];
 
-// Anomaly pattern definitions
-export const ANOMALY_PATTERNS: Record<string, AnomalyPattern> = {
-  "content-change": {
-    type: "content",
-    trigger: "time",
-    config: { delay: 3000 },
-  },
-  "layout-collapse": {
-    type: "layout",
-    trigger: "scroll",
-    config: { breakPoint: 0.5 },
-  },
-  "gif-image": {
-    type: "image",
-    trigger: "immediate",
-    config: {},
-  },
-};
 
 // Function to select a random article
 export function getRandomArticle(): Article {
