@@ -15,6 +15,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "8番ニュース",
   description: "異変を見つけたら前の記事に戻ること",
+  openGraph: {
+    title: "8番ニュース",
+    description: "異変を見つけたら前の記事に戻ること",
+    images: ["/images/og-image.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "8番ニュース",
+    description: "異変を見つけたら前の記事に戻ること",
+    images: ["/images/og-image.png"],
+  },
 };
 
 export default function RootLayout({
