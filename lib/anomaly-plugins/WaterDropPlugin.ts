@@ -17,7 +17,7 @@ export class WaterDropPlugin extends BaseAnomalyPlugin {
     return "Anomaly that creates water drops falling from the top of the screen";
   }
 
-  async execute(element: HTMLElement): Promise<void> {
+  async execute(_element: HTMLElement): Promise<void> {
     const {
       dropCount = 20,
       duration = 5000,
@@ -147,16 +147,19 @@ export class WaterDropPlugin extends BaseAnomalyPlugin {
     this.drops.push(drop);
 
     // Remove drop after animation completes
-    setTimeout(() => {
-      if (dropWrapper.parentNode) {
-        dropWrapper.removeChild(drop);
-        dropWrapper.parentNode.removeChild(dropWrapper);
-      }
-      const index = this.drops.indexOf(drop);
-      if (index > -1) {
-        this.drops.splice(index, 1);
-      }
-    }, animationDuration + delay + 500);
+    setTimeout(
+      () => {
+        if (dropWrapper.parentNode) {
+          dropWrapper.removeChild(drop);
+          dropWrapper.parentNode.removeChild(dropWrapper);
+        }
+        const index = this.drops.indexOf(drop);
+        if (index > -1) {
+          this.drops.splice(index, 1);
+        }
+      },
+      animationDuration + delay + 500,
+    );
   }
 
   cleanup(): void {
@@ -169,7 +172,7 @@ export class WaterDropPlugin extends BaseAnomalyPlugin {
     this.drops = [];
 
     // Remove container
-    if (this.dropContainer && this.dropContainer.parentNode) {
+    if (this.dropContainer?.parentNode) {
       this.dropContainer.parentNode.removeChild(this.dropContainer);
     }
     this.dropContainer = null;

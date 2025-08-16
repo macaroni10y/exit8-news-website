@@ -1,4 +1,4 @@
-import type { AnomalyPattern, Article } from "./types";
+import type { Article } from "./types";
 
 const articleTitle =
   "地域通貨アプリ「まちめぐりPay」10月1日スタート 商店街の回遊促進へ";
@@ -51,152 +51,155 @@ const articleContent = `
 
 // Article data (minimal sample)
 export const ARTICLES: Article[] = [
-  // {
-  //   id: "article-1",
-  //   isAnomaly: false,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  // },
-  // {
-  //   id: "article-2",
-  //   isAnomaly: true,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  //   anomalyPlugins: [
-  //     {
-  //       id: "layout-collapse",
-  //       trigger: "time",
-  //       delay: 3000,
-  //       config: {
-  //         intensity: "medium",
-  //         duration: 2000,
-  //       },
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "article-3",
-  //   isAnomaly: true,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  //   anomalyPlugins: [
-  //     {
-  //       id: "reverse-scroll",
-  //       trigger: "time",
-  //       delay: 2500,
-  //       config: {
-  //         intensity: "full",
-  //         visualFeedback: false,
-  //       },
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "article-4",
-  //   isAnomaly: true,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  //   anomalyPlugins: [
-  //     {
-  //       id: "image-swap",
-  //       trigger: "immediate",
-  //       config: {
-  //         targetImageUrl: "/images/machimeguri_pay_app.png",
-  //         replaceImageUrl: "/images/machimeguri_pay_app_anomaly.png",
-  //         transition: false,
-  //       },
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "article-5",
-  //   isAnomaly: true,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  //   anomalyPlugins: [
-  //     {
-  //       id: "text-corruption",
-  //       trigger: "time",
-  //       delay: 4000,
-  //       config: {
-  //         intensity: "progressive",
-  //         preserveSpaces: true,
-  //       },
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "article-6",
-  //   isAnomaly: true,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  //   anomalyPlugins: [
-  //     {
-  //       id: "period-removal",
-  //       trigger: "immediate",
-  //       config: {},
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "article-7",
-  //   isAnomaly: true,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  //   anomalyPlugins: [
-  //     {
-  //       id: "scroll-vanish",
-  //       trigger: "immediate",
-  //       config: {
-  //         vanishType: "hide",
-  //         targetElements: "p, h2, h3, img, ul, ol, blockquote",
-  //         transition: true,
-  //       },
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "article-8",
-  //   isAnomaly: true,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  //   anomalyPlugins: [
-  //     {
-  //       id: "title-change",
-  //       trigger: "time",
-  //       delay: 3000,
-  //       config: {},
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "article-9",
-  //   isAnomaly: true,
-  //   title: articleTitle,
-  //   content: articleContent,
-  //   publishDate: "2025-01-15",
-  //   anomalyPlugins: [
-  //     {
-  //       id: "text-replacement",
-  //       trigger: "immediate",
-  //       config: {
-  //         replaceAll: true,
-  //         caseSensitive: true,
-  //         replacements: [
-  //           { from: "常連の再来店も可視化できた", to: "これを読んだら引き返して" },
-  //         ],
-  //       },
-  //     },
-  //   ],
-  // },
+  {
+    id: "article-1",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "article-2",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "layout-collapse",
+        trigger: "time",
+        delay: 3000,
+        config: {
+          intensity: "medium",
+          duration: 2000,
+        },
+      },
+    ],
+  },
+  {
+    id: "article-3",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "reverse-scroll",
+        trigger: "time",
+        delay: 2500,
+        config: {
+          intensity: "full",
+          visualFeedback: false,
+        },
+      },
+    ],
+  },
+  {
+    id: "article-4",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "image-swap",
+        trigger: "immediate",
+        config: {
+          targetImageUrl: "/images/machimeguri_pay_app.png",
+          replaceImageUrl: "/images/machimeguri_pay_app_anomaly.png",
+          transition: false,
+        },
+      },
+    ],
+  },
+  {
+    id: "article-5",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "text-corruption",
+        trigger: "time",
+        delay: 4000,
+        config: {
+          intensity: "progressive",
+          preserveSpaces: true,
+        },
+      },
+    ],
+  },
+  {
+    id: "article-6",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "period-removal",
+        trigger: "immediate",
+        config: {},
+      },
+    ],
+  },
+  {
+    id: "article-7",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "scroll-vanish",
+        trigger: "immediate",
+        config: {
+          vanishType: "hide",
+          targetElements: "p, h2, h3, img, ul, ol, blockquote",
+          transition: true,
+        },
+      },
+    ],
+  },
+  {
+    id: "article-8",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "title-change",
+        trigger: "time",
+        delay: 3000,
+        config: {},
+      },
+    ],
+  },
+  {
+    id: "article-9",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "text-replacement",
+        trigger: "immediate",
+        config: {
+          replaceAll: true,
+          caseSensitive: true,
+          replacements: [
+            {
+              from: "常連の再来店も可視化できた",
+              to: "これを読んだら引き返して",
+            },
+          ],
+        },
+      },
+    ],
+  },
   {
     id: "article-10",
     isAnomaly: true,
@@ -218,8 +221,22 @@ export const ARTICLES: Article[] = [
       },
     ],
   },
+  {
+    id: "article-11",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "draggable-image",
+        trigger: "time",
+        delay: 2000,
+        config: {},
+      },
+    ],
+  },
 ];
-
 
 // Function to select a random article
 export function getRandomArticle(): Article {
