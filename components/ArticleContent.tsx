@@ -86,16 +86,6 @@ export function ArticleContent({ article }: ArticleContentProps) {
           {article.content}
         </ReactMarkdown>
       </div>
-
-      {article.imageUrl && (
-        <div className="my-8">
-          <img
-            src={article.imageUrl}
-            alt="記事の画像"
-            className="w-full max-w-2xl mx-auto rounded-lg shadow-md"
-          />
-        </div>
-      )}
     </article>
   );
 }

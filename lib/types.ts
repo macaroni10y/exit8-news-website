@@ -21,7 +21,6 @@ export interface Article {
   isAnomaly: boolean; // Whether it's an anomaly article
   title: string; // Article title
   content: string; // Article content
-  imageUrl?: string; // Article image URL
   publishDate: string; // Publish date
   anomalyPlugins?: AnomalyPluginConfig[]; // Anomaly plugin configuration
 }
