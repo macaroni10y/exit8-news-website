@@ -15,10 +15,10 @@ const articleContent = `
 
 ## 使い方と体験
 
-アプリを開いて金額を入力し、店頭QRを読み取るだけのシンプル設計です。支払い直後にレシートと還元予定ポイントが表示され、家計簿にも自動記録されます。初回はアプリ内のチュートリアルが案内し、対面サポートが必要な人には商店街の案内所カウンターでスタッフが手ほどきします。
+アプリを開いてQRコードを表示し、店頭で読み取ってもらうだけのシンプル設計です。支払い直後にレシートと還元予定ポイントが表示され、家計簿にも自動記録されます。初回はアプリ内のチュートリアルが案内し、対面サポートが必要な人には商店街の案内所カウンターでスタッフが手ほどきします。
 
-![商店街でQRを読み取り決済する来店客のようす](/images/dummy.png)
-*商店街でQRを読み取り決済する来店客のようす*
+![対象店舗でQR決済する来店客のようす](/images/machimeguri_pay_usage.jpg)
+*対象店舗でQR決済する来店客のようす*
 
 ## 店舗側のメリット
 
@@ -32,7 +32,7 @@ const articleContent = `
 
 決済データはトークン化し、個人が特定されない形で統計化。異常取引は運用センターでリアルタイム監視し、二段階認証や上限アラートで不正利用を抑止します。高齢者向けには顔認証＋暗証の併用モードも選択可能です。
 
-![運用センターのモニタリング画面と加盟店向けダッシュボード](/images/dummy.png)
+![運用センターのモニタリング画面と加盟店向けダッシュボード](/images/dashboard.png)
 *運用センターのモニタリング画面と加盟店向けダッシュボード*
 
 ## 開始イベントとスケジュール
@@ -174,6 +174,26 @@ export const ARTICLES: Article[] = [
         trigger: "time",
         delay: 3000,
         config: {},
+      },
+    ],
+  },
+  {
+    id: "article-9",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "text-replacement",
+        trigger: "immediate",
+        config: {
+          replaceAll: true,
+          caseSensitive: true,
+          replacements: [
+            { from: "常連の再来店も可視化できた", to: "これを読んだら引き返して" },
+          ],
+        },
       },
     ],
   },
