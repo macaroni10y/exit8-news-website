@@ -13,14 +13,19 @@ export class ImageSwapPlugin extends BaseAnomalyPlugin {
   }
 
   get description(): string {
-    return "Anomaly that swaps static images to GIF animations";
+    return "Anomaly that swaps static images to other image";
   }
 
   async execute(element: HTMLElement): Promise<void> {
-    const { gifUrl, selector = "img", transition = false } = this.config.config;
+    const {
+      targetImageUrl,
+      replaceImageUrl,
+      selector = "img",
+      transition = false,
+    } = this.config.config;
 
-    if (!gifUrl) {
-      console.warn("ImageSwapPlugin: gifUrl not specified in config");
+    if (!replaceImageUrl) {
+      console.warn("ImageSwapPlugin: replaceImageUrl not specified in config");
       return;
     }
 
@@ -36,19 +41,22 @@ export class ImageSwapPlugin extends BaseAnomalyPlugin {
 
     // Process each image
     for (const img of images) {
-      await this.swapImage(img, gifUrl, transition);
+      // Skip if image source does not match target
+      if (targetImageUrl && img.src.includes(targetImageUrl)) {
+        await this.swapImage(img, replaceImageUrl, transition);
+      }
     }
   }
 
   /**
    * Swap individual image
    * @param img Target image element
-   * @param gifUrl Target GIF URL
+   * @param replaceImageUrl Target GIF URL
    * @param transition Whether to use fade effect
    */
   private async swapImage(
     img: HTMLImageElement,
-    gifUrl: string,
+    replaceImageUrl: string,
     transition: boolean,
   ): Promise<void> {
     // Save original image URL
@@ -57,10 +65,10 @@ export class ImageSwapPlugin extends BaseAnomalyPlugin {
 
     if (transition) {
       // Swap with fade effect
-      await this.fadeSwap(img, gifUrl);
+      await this.fadeSwap(img, replaceImageUrl);
     } else {
       // Swap immediately
-      img.src = gifUrl;
+      img.src = replaceImageUrl;
     }
 
     // Wait for image to load
