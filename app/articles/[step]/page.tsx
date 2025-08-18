@@ -92,6 +92,7 @@ export default async function ArticlePage({ params }: PageProps) {
                 <nav className="flex flex-col sm:flex-row sm:justify-between gap-4 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200">
                   <Link
                     href={`/articles/${step}?clicked=prev`}
+                    prefetch={false}
                     className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-3 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors text-sm sm:text-base"
                   >
                     <svg
@@ -112,6 +113,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
                   <Link
                     href={`/articles/${step}?clicked=next`}
+                    prefetch={false}
                     className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors text-sm sm:text-base"
                   >
                     次の記事へ
@@ -144,6 +146,7 @@ export default async function ArticlePage({ params }: PageProps) {
               <nav className="flex flex-col sm:flex-row sm:justify-between gap-4 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200">
                 <Link
                   href={`/articles/${step}?clicked=prev`}
+                  prefetch={false}
                   className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-3 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors text-sm sm:text-base"
                 >
                   <svg
@@ -164,6 +167,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
                 <Link
                   href={`/articles/${step}?clicked=next`}
+                  prefetch={false}
                   className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors text-sm sm:text-base"
                 >
                   次の記事へ
