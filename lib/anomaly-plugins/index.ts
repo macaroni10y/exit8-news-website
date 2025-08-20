@@ -1,8 +1,10 @@
 // Export anomaly plugins
 
 export { AnomalyEngine, anomalyEngine } from "./AnomalyEngine";
+export { AutoScrollPlugin } from "./AutoScrollPlugin";
 export { BaseAnomalyPlugin } from "./BaseAnomalyPlugin";
 export { DraggableImagePlugin } from "./DraggableImagePlugin";
+export { DuplicateNavLinksPlugin } from "./DuplicateNavLinksPlugin";
 export { ImageSwapPlugin } from "./ImageSwapPlugin";
 export { LayoutCollapsePlugin } from "./LayoutCollapsePlugin";
 export { PeriodRemovalPlugin } from "./PeriodRemovalPlugin";
@@ -15,7 +17,9 @@ export { WaterDropPlugin } from "./WaterDropPlugin";
 
 // Automatic plugin registration
 import { anomalyEngine } from "./AnomalyEngine";
+import { AutoScrollPlugin } from "./AutoScrollPlugin";
 import { DraggableImagePlugin } from "./DraggableImagePlugin";
+import { DuplicateNavLinksPlugin } from "./DuplicateNavLinksPlugin";
 import { ImageSwapPlugin } from "./ImageSwapPlugin";
 import { LayoutCollapsePlugin } from "./LayoutCollapsePlugin";
 import { PeriodRemovalPlugin } from "./PeriodRemovalPlugin";
@@ -28,7 +32,9 @@ import { WaterDropPlugin } from "./WaterDropPlugin";
 
 // Automatically register available plugins
 export function registerAllPlugins(): void {
+  anomalyEngine.registerPlugin(AutoScrollPlugin);
   anomalyEngine.registerPlugin(DraggableImagePlugin);
+  anomalyEngine.registerPlugin(DuplicateNavLinksPlugin);
   anomalyEngine.registerPlugin(LayoutCollapsePlugin);
   anomalyEngine.registerPlugin(ImageSwapPlugin);
   anomalyEngine.registerPlugin(TextCorruptionPlugin);
