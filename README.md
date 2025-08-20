@@ -2,6 +2,9 @@
 
 A web-based game inspired by the popular [8番出口 (The Exit 8)](https://playism.com/game/the-exit-8/) game, disguised as a news website. Players must carefully read news articles and detect subtle anomalies to progress through 8 consecutive levels.
 
+![overview](https://github.com/user-attachments/assets/97531453-8337-4af6-972d-bf29e1063752)
+
+
 ## Game Overview
 
 Players navigate through news articles, looking for anomalies. If an anomaly is detected, they should go to the previous article; if everything appears normal, they proceed to the next article. Successfully identifying 8 consecutive articles correctly leads to victory. A single mistake sends players back to the beginning.
@@ -13,7 +16,7 @@ Players navigate through news articles, looking for anomalies. If an anomaly is 
 3. **Progress or restart** - Correct choices advance you to the next level (1-8), while incorrect choices reset you to level 1
 4. **Win condition** - Successfully complete 8 consecutive correct choices to clear the game
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 15.4.6 with Turbopack
 - **Frontend**: React 19.1.0
