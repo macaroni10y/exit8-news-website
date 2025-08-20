@@ -301,6 +301,43 @@ export const ARTICLES: Article[] = [
       },
     ],
   },
+  {
+    id: "c1eb8ff8-45ea-4bf2-bcea-58b64d1b96ca",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "auto-scroll",
+        trigger: "time",
+        delay: 2000,
+        config: {
+          speed: 0.25,
+          smoothness: true,
+          stopAtBottom: true,
+        },
+      },
+    ],
+  },
+  {
+    id: "nav-links-duplicate-001",
+    isAnomaly: true,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+    anomalyPlugins: [
+      {
+        id: "duplicate-nav-links",
+        trigger: "time",
+        delay: 2500,
+        config: {
+          layout: "mixed",
+          spacing: "normal",
+        },
+      },
+    ],
+  },
 ];
 
 // Function to select a random article

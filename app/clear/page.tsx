@@ -11,8 +11,8 @@ export default function ClearPage() {
           {/* Top navigation */}
           <div className="flex justify-between items-center py-2 text-xs sm:text-sm text-gray-600">
             <div className="flex space-x-2 sm:space-x-4">
-              <span className="hidden sm:inline">2025年1月9日（木）</span>
-              <span className="sm:hidden">1/9</span>
+              <span className="hidden sm:inline">2025年1月16日（木）</span>
+              <span className="sm:hidden">1/16</span>
               <span className="hidden sm:inline">天気：晴れ 15℃</span>
               <span className="sm:hidden">☀15℃</span>
             </div>
@@ -57,7 +57,7 @@ export default function ClearPage() {
                         dateTime="2025-01-09"
                         className="text-sm sm:text-base"
                       >
-                        2025年1月9日（木）
+                        2025年1月16日（木）
                       </time>
                       <span className="text-sm text-gray-500">
                         記者：編集部

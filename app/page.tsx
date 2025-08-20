@@ -8,8 +8,8 @@ export default function Home() {
           {/* Top navigation */}
           <div className="flex justify-between items-center py-2 text-xs sm:text-sm text-gray-600">
             <div className="flex space-x-2 sm:space-x-4">
-              <span className="hidden sm:inline">2025年1月9日（木）</span>
-              <span className="sm:hidden">1/9</span>
+              <span className="hidden sm:inline">2025年1月16日（木）</span>
+              <span className="sm:hidden">1/16</span>
               <span className="hidden sm:inline">天気：晴れ 15℃</span>
               <span className="sm:hidden">☀15℃</span>
             </div>
@@ -422,9 +422,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-600 pt-4 sm:pt-6 text-center">
-            <p className="text-xs sm:text-sm text-gray-400">
-              &copy; 2025 8番ニュース. All rights reserved.
-            </p>
+            <p className="text-xs sm:text-sm text-gray-400">2025 8番ニュース</p>
             <p className="text-xs text-gray-500 mt-1 sm:mt-2">
               本サイトはゲーム用の架空のニュースサイトです
             </p>
