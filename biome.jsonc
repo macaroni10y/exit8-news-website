@@ -27,7 +27,8 @@
         "noArrayIndexKey": "off",
         "noExplicitAny": "off",
         "noUnknownAtRules": "off",
-        "noAssignInExpressions": "off"
+        "noAssignInExpressions": "off",
+        "useIterableCallbackReturn": "off"
       },
       "performance": {
         "noImgElement": "off"

@@ -422,9 +422,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-600 pt-4 sm:pt-6 text-center">
-            <p className="text-xs sm:text-sm text-gray-400">
-              2025 8番ニュース
-            </p>
+            <p className="text-xs sm:text-sm text-gray-400">2025 8番ニュース</p>
             <p className="text-xs text-gray-500 mt-1 sm:mt-2">
               本サイトはゲーム用の架空のニュースサイトです
             </p>

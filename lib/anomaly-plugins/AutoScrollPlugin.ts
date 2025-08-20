@@ -38,7 +38,8 @@ export class AutoScrollPlugin extends BaseAnomalyPlugin {
         }
 
         const currentScroll = window.pageYOffset;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const maxScroll =
+          document.documentElement.scrollHeight - window.innerHeight;
 
         if (stopAtBottom && currentScroll >= maxScroll) {
           this.cleanup();
@@ -61,7 +62,8 @@ export class AutoScrollPlugin extends BaseAnomalyPlugin {
         }
 
         const currentScroll = window.pageYOffset;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const maxScroll =
+          document.documentElement.scrollHeight - window.innerHeight;
 
         if (stopAtBottom && currentScroll >= maxScroll) {
           this.cleanup();
