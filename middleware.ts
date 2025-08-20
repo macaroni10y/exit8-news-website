@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { ARTICLES, getRandomArticle } from "@/lib/constants";
 import {
+  createGameCompletionToken,
   createInitialToken,
   isValidTransition,
   updateToken,
@@ -10,6 +11,21 @@ import {
 
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
+
+  // Handle /clear page access
+  if (pathname === "/clear") {
+    const currentToken = request.cookies.get("play")?.value;
+    const payload = currentToken ? await verifyToken(currentToken) : null;
+
+    // Check if user has legitimately completed the game
+    if (!payload || !payload.gameCompleted) {
+      // Redirect to home page if not authorized
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    // Allow access if game is completed
+    return NextResponse.next();
+  }
 
   // Skip processing for non-article paths
   if (!pathname.startsWith("/articles/")) {
@@ -127,8 +143,15 @@ export async function middleware(request: NextRequest) {
       // Correct: Go to next step or clear page
       const nextStep = step + 1;
       if (nextStep > 8) {
-        // Game clear
+        // Game clear - create completion token
+        const completionToken = await createGameCompletionToken(payload);
         const response = NextResponse.redirect(new URL("/clear", request.url));
+        response.cookies.set("play", completionToken, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "lax",
+          maxAge: 5 * 60, // 5 minutes for clear page
+        });
         return response;
       } else {
         // Select new article for next step
@@ -171,5 +194,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/articles/:path*"],
+  matcher: ["/articles/:path*", "/clear"],
 };

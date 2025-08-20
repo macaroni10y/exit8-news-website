@@ -13,6 +13,7 @@ export interface PlayTokenPayload {
   lastValidStep: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8; // Last legitimately reached step
   lastAction: "next" | "prev" | "init" | null; // Last action
   lastActionTime: number; // Last action timestamp (Unix time)
+  gameCompleted?: boolean; // Flag indicating successful game completion
 }
 
 // Article data structure

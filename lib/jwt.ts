@@ -105,6 +105,26 @@ export async function updateTokenWithArticle(
   return jwt;
 }
 
+// Create game completion token
+export async function createGameCompletionToken(
+  currentPayload: PlayTokenPayload,
+): Promise<string> {
+  const now = Math.floor(Date.now() / 1000);
+  const newPayload: PlayTokenPayload = {
+    ...currentPayload,
+    gameCompleted: true,
+    exp: now + 5 * 60, // 5 minutes expiration for clear page
+    lastActionTime: now,
+  };
+
+  const jwt = await new SignJWT(newPayload as any)
+    .setProtectedHeader({ alg: "HS256" })
+    .setExpirationTime(newPayload.exp)
+    .sign(secret);
+
+  return jwt;
+}
+
 // Check transition validity
 export function isValidTransition(
   payload: PlayTokenPayload | null,
