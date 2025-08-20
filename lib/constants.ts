@@ -51,15 +51,80 @@ const articleContent = `
 
 // Article data (minimal sample)
 export const ARTICLES: Article[] = [
+  // Normal articles (10 total for 50% probability)
   {
-    id: "article-1",
+    id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
     isAnomaly: false,
     title: articleTitle,
     content: articleContent,
     publishDate: "2025-01-15",
   },
   {
-    id: "article-2",
+    id: "d7e8f9a0-1b2c-3d4e-5f6a-7b8c9d0e1f2a",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "9f8e7d6c-5b4a-3928-1706-f5e4d3c2b1a0",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "2c3d4e5f-6a7b-8c9d-0e1f-2a3b4c5d6e7f",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "7b8c9d0e-1f2a-3b4c-5d6e-7f8a9b0c1d2e",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "e5f6a7b8-c9d0-e1f2-a3b4-c5d6e7f8a9b0",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "3b4c5d6e-7f8a-9b0c-1d2e-3f4a5b6c7d8e",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "c1d2e3f4-a5b6-c7d8-e9f0-a1b2c3d4e5f6",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  {
+    id: "8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d",
+    isAnomaly: false,
+    title: articleTitle,
+    content: articleContent,
+    publishDate: "2025-01-15",
+  },
+  // Anomaly articles (10 total for 50% probability)
+  {
+    id: "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -77,7 +142,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-3",
+    id: "550e8400-e29b-41d4-a716-446655440000",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -95,7 +160,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-4",
+    id: "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -113,7 +178,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-5",
+    id: "c9bf9e57-1685-4c89-bafb-ff5af830be8a",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -131,7 +196,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-6",
+    id: "b105f00d-bad0-c0de-1bad-f00ddeadbabe",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -145,7 +210,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-7",
+    id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -163,7 +228,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-8",
+    id: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -178,7 +243,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-9",
+    id: "6dcd4ce2-3d55-4b02-87e5-c103c5d75829",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -201,7 +266,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-10",
+    id: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
@@ -222,7 +287,7 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
-    id: "article-11",
+    id: "1b671a64-40d5-491e-99b0-da01ff1f3341",
     isAnomaly: true,
     title: articleTitle,
     content: articleContent,
