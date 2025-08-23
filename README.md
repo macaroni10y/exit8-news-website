@@ -1,4 +1,6 @@
-# Exit 8 News Website
+# Exit 8 News Website(8番ニュース)
+
+<img width="240" height="126" alt="logo of Exit 8 News Website" src="https://github.com/user-attachments/assets/d89322cc-c94a-4fe8-994f-27c1c3987076" />
 
 A web-based game inspired by the popular [8番出口 (The Exit 8)](https://playism.com/game/the-exit-8/) game, disguised as a news website. Players must carefully read news articles and detect subtle anomalies to progress through 8 consecutive levels.
 
